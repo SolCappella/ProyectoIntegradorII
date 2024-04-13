@@ -6,7 +6,10 @@ var router = express.Router();
 const mainController = require('../controllers/mainController')
 router.get("/", mainController);
 
+const registerControllerController=require('../controllers//registerController')
+router.get('/register', registerController);
 
-
+const loginController=require('../controllers//loginController')
+router.get('/login', loginController);
 
 module.exports = router;
