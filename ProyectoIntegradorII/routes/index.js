@@ -4,12 +4,12 @@ var router = express.Router();
 /* GET home page. */
 
 const mainController = require('../controllers/mainController')
-router.get("/", mainController);
+router.get("/", mainController.index);
 
-const registerControllerController=require('../controllers//registerController')
-router.get('/register', registerController);
+const registerController = require('../controllers//registerController')
+router.get('/register', registerController.index);
 
-const loginController=require('../controllers//loginController')
-router.get('/login', loginController);
+const loginController = require('../controllers//loginController')
+router.get('/login', loginController.index);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const productController={
-    'product':function (req,res) {
+    'index':function (req,res) {
         res.render('product')
 }
 

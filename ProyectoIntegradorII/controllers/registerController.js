@@ -1,5 +1,5 @@
 const registerController={
-    'register':function (req,res) {
+    'index':function (req,res) {
         res.render('register')
 }
 

@@ -1,5 +1,5 @@
 const loginContoller={
-    'login':function (req,res) {
+    'index':function (req,res) {
         res.render('login')
     }
 }

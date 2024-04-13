@@ -8,7 +8,6 @@ var mainRouter = require('./routes/index');
 const loginRouter = require('./routes/index');
 const productAddRouter = require('./routes/product');
 const productRouter = require('./routes/product');
-const profileEditRouter = require('./routes/profile');
 const profileRouter = require('./routes/profile');
 const registerRouter = require('./routes/index')
 const searchRouter = require('./routes/search-results')
@@ -29,7 +28,6 @@ app.use('/', mainRouter);
 app.use('/login',loginRouter);
 app.use('/products',productAddRouter);
 app.use('/products',productRouter);
-app.use('/profile/edit', profileEditRouter);
 app.use('/profile', profileRouter);
 app.use('/register',registerRouter);
 app.use('/search', searchRouter);

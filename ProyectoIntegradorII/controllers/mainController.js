@@ -1,6 +1,6 @@
-const mainContoller={
-    'index':function (req,res) {
+const mainController={
+    'index': function (req,res) {
         res.render('index');
 }
 }
-module.exports = mainContoller;
+module.exports = mainController;

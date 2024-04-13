@@ -1,5 +1,5 @@
 const searchResultsController={
-    'search':function (req,res) {
+    'index':function (req,res) {
         res.render('search-results')
 }
 
