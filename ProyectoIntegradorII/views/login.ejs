@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('./partials/head') %>
+
+    <!-- Header -->
+    <%- include('./partials/header') %>
+        <!-- Header -->
+
+        <body>
+
+            <div class="col-12 col-md-4">
+                <h2>Login</h2>
+                <form action="/routes/login.js" method="get">
+                    <input type="email" name="usuario" placeholder="Email" required>
+                    <input type="password" name="contraseña" placeholder="Password" required>
+                    <label for="recordarme">
+                        <input type="checkbox" name="recordarme" id="recordarme">
+                        Recordarme
+                    </label>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        
+
+        </body>
+    </html>
