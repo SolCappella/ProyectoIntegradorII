@@ -6,10 +6,10 @@ var router = express.Router();
 const mainController = require('../controllers/mainController')
 router.get("/", mainController.index);
 
-const registerController = require('../controllers//registerController')
+const registerController = require('../controllers/registerController')
 router.get('/register', registerController.index);
 
-const loginController = require('../controllers//loginController')
+const loginController = require('../controllers/loginController')
 router.get('/login', loginController.index);
 
 module.exports = router;
