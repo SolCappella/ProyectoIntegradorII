@@ -1,11 +1,9 @@
-const loginContoller={
-    'index':function (req,res) {
-        res.render('login')
-    }
-}
+const db=require('../db/data');
 
-function mostrarFormLogin (req, res) {
+
+const loginContoller={
+    'login': function mostrarFormLogin (req, res) {
     res.render ('login')
 }
-
+}
 module.exports=loginContoller;
