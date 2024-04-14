@@ -3,17 +3,17 @@ const store = {
       id: 1,
       email: 'john.doe@gmail.com',
       usuario: 'John Doe', 
-      contraseña: 'johndoe123'
-      fecha nacimiento: '28/04/1999'
-      documento: 41284385
-      foto prefil: ' ',
+      contraseña: 'johndoe123',
+      fecha nacimiento: '28/04/1999',
+      documento: 41284385,
+      foto perfil: ' ',
     },
+
     productos: [
       {
         id: 1,
         nombre: 'Cafetera Moulinex',
         descripcion: 'Cafetera para cápsulas monodosis.',
-        precio: 100,
         imagen: 'public/images/products/img-cafetera-moulinex.jpg',
         comentarios: [
           {
@@ -34,7 +34,6 @@ const store = {
         id: 2,
         nombre: 'Macbook Pro 2019',
         descripcion: 'Pantalla de 15.4 pulgadas (diagonal) retroiluminada por LED con tecnología IPS.',
-        precio: 150,
         imagen: 'public/images/products/img-macbook-pro-2019.jpg',
         comentarios: [
           {

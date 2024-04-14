@@ -1,3 +1,5 @@
+const db = require('../db/data');
+
 const productController={
     'index':function (req,res) {
         res.render('product')
@@ -5,3 +7,4 @@ const productController={
 }
 
 module.exports=productController;
+

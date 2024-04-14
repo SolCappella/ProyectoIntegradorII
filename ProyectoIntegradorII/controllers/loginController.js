@@ -1,11 +1,11 @@
-const loginContoller={
-    'index':function (req,res) {
+const db = require('../db/index');
+const session = require('express-session');
+
+const loginController={
+    index :function (req,res) {
         res.render('login')
     }
-}
 
-function mostrarFormLogin (req, res) {
-    res.render ('login')
-}
 
-module.exports=loginContoller;
+}
+module.exports = loginController;
