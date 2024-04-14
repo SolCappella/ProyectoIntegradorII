@@ -1,8 +1,11 @@
 const db = require('../db/data');
 
 const productController={
-    'index':function (req,res) {
-        res.render('product')
+    'product':function (req,res) {
+        res.render('product');
+    },
+    'add': function (req, res) {
+        res.render('product-add');
     },
 }
 
