@@ -4,9 +4,9 @@ const store = {
       email: 'john.doe@gmail.com',
       usuario: 'John Doe', 
       contraseña: 'johndoe123',
-      fecha nacimiento: '28/04/1999',
+      fechaNacimiento: '28/04/1999',
       documento: 41284385,
-      foto perfil: ' ',
+      fotoPerfil: ' ',
     },
 
     productos: [

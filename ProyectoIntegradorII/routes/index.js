@@ -7,9 +7,9 @@ const mainController = require('../controllers/mainController')
 router.get("/", mainController.index);
 
 const registerController = require('../controllers/registerController')
-router.get('/register', registerController.index);
+router.get('/register', registerController.register);
 
 const loginController = require('../controllers/loginController')
-router.get('/login', loginController.index);
+router.get('/login', loginController.login);
 
 module.exports = router;

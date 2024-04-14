@@ -1,11 +1,9 @@
-const db = require('../db/index');
-const session = require('express-session');
-
-const loginController={
-    index :function (req,res) {
-        res.render('login')
-    }
+const db=require('../db/data');
 
 
+const loginContoller={
+    'login': function mostrarFormLogin (req, res) {
+    res.render ('login')
 }
-module.exports = loginController;
+}
+module.exports=loginContoller;
