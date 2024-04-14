@@ -1,9 +1,12 @@
 const store = {
     usuario: {
       id: 1,
-      nombre: 'John Doe',
       email: 'john.doe@gmail.com',
-      imagenPerfil: ' ',
+      usuario: 'John Doe', 
+      contraseña: 'johndoe123'
+      fecha nacimiento: '28/04/1999'
+      documento: 41284385
+      foto prefil: ' ',
     },
     productos: [
       {

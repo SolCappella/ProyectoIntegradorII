@@ -4,4 +4,8 @@ const loginContoller={
     }
 }
 
+function mostrarFormLogin (req, res) {
+    res.render ('login')
+}
+
 module.exports=loginContoller;
