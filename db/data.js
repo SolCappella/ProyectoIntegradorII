@@ -53,7 +53,7 @@ const store = {
           nombreUsuario: 'Pedro Saltamonte',
           texto: 'Un producto muy practico',
           imagenPerfil: ' public/images/products/defaultprofile.jpg',
-        }
+        },
         {
           id: 3,
           nombreUsuario: 'Silvestre Cortez',
