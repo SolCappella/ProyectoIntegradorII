@@ -2,7 +2,8 @@ const db = require('../db/data');
 
 const mainController = {
     'index': function (req, res) {
-        res.render('index');
+        let productos = db.productos;
+        res.render('index', {productos});
     },
     'login': function mostrarFormLogin(req, res) {
         res.render('login', {title:'Iniciar sesión'})

@@ -15,138 +15,29 @@
 
 	<!-- Novedades -->
 	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title bebas-neue-regular">Novedades</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-		</div>
+    <div class="row">
+        <div class="col-12">
+            <h2 class="products-title bebas-neue-regular">Novedades</h2>
+        </div>
+        <!-- Show the "ultimos" products -->
+        <% for(let i = 0; i < productos.length; i++) { %>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <section class="product-box">
+                    <a href="/products">
+                        <figure class="product-box_image">
+                            <img src="<%= productos[i].imagen %>" alt="<%= productos[i].nombre %>">
+                        </figure>
+                        <article class="product-box_data">
+                            <h2 class="bebas-neue-regular"><%= productos[i].nombre %></h2>
+                            <p class="poppins-regular"><%= productos[i].descripcion %></p>
+                            <p class="poppins-regular">Comentarios: <%= productos[i].comentarios.length %></p>
+                        </article>
+                    </a>
+                </section>
+            </div>
+        <% } %>
 	</div>
-	<!-- /Novedades -->
-	<!-- Más comentados -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Más comentados</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/products">
-						<figure class="product-box_image">
-							<img src="images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2 class="bebas-neue-regular">Nombre del producto</h2>
-							<p class="poppins-regular">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque delectus ex</p>
-							<p class="poppins-regular">Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-		</div>
-	</div>
+</div>
 	<!-- /Más comentados -->
 	
 	<!-- /Footer -->
