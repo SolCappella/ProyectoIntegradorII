@@ -13,7 +13,7 @@ const store = {
     {
       id: 1,
       nombre: 'Cafetera Moulinex',
-      descripcion: 'Cafetera para cápsulas monodosis.',
+      descripcion: 'La cafetera Moulinex es un dispositivo diseñado para preparar café de forma fácil y rápida. Ofrece características como capacidad de preparación de varias tazas de café, diseño compacto y elegante, opciones de preparación ajustables y facilidad de uso.',
       imagen: './images/products/img-cafetera-moulinex.jpg',
       comentarios: [
         {
