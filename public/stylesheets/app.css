@@ -199,6 +199,11 @@ hr {
   overflow: hidden;
   transition: 300ms;
   margin: 20px 0;
+  height: 75vh;
+}
+
+.product-box:hover {
+  height: 100vh;
 }
 
 .product-box a {
@@ -207,6 +212,7 @@ hr {
 
 .product-box_image {
   border-bottom: 1px solid var(--light-gray);
+  height: 60vh;
 }
 
 .product-box_data {
