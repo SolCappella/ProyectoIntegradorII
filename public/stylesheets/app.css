@@ -85,7 +85,12 @@ hr {
   background-color: #9f6ba0;
 }
 
-.main-header_home-link,
+.main-header_home-link {
+  display: block;
+  width: 50%;
+  height: auto;
+}
+
 .main-header_credit-link {
   display: block;
 }
