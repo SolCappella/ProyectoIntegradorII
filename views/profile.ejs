@@ -3,35 +3,36 @@
 <!-- Include Head -->
 <%- include('./partials/head') %>
 
-<!-- Header -->	
+<!-- Header -->    
 <%- include('./partials/header-logueado') %>
 <!-- Header -->
 
 <body>
-	<section class="info-usuario container products-wrapper">
-		<div class="row">
-			<div class="img-container offset-3 col-2">
-				<img src="https://via.placeholder.com/150" alt="foto de perfil" class="foto-perfil">
-			</div>
-			<div class="data-container col-6">
-				<div class="d-flex align-items-center ">
-					<h1 class="main-title">Nombre del usuario 
-						<a href="/profile/edit">
-							<i class="fas fa-cog"></i>
-						</a>
-					</h1>
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
-				</div>
-				<div>
-					<ul class="">
-						<li>8 productos</li>
-						<li>200 seguidores</li>
-						<li>300 comentarios</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
+    
+    <section class="info-usuario container products-wrapper">
+        <div class="row">
+            <div class="img-container offset-3 col-2">
+                <img src="<%= user.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+            </div>
+            <div class="data-container col-6">
+                <div class="d-flex align-items-center ">
+                    <h1 class="main-title"><%= user.usuario %> 
+                        <a href="/profile/edit">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                    </h1>
+                    <a class="btn mt-3 ml-4" href="#">SEGUIR</a>
+                </div>
+                <div>
+                    <ul class="">
+                        <li><%= stats.productos %> productos</li>
+                        <li><%= stats.seguidores %> seguidores</li>
+                        <li><%= stats.comentarios %> comentarios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
