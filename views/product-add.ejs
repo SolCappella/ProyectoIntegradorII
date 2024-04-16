@@ -3,10 +3,11 @@
 <!-- Include Head -->
 <%- include('./partials/head') %>
 
-	<!-- Header -->
-<%- include('./partials/header-logueado') %>
-	<!-- Header -->
 <body>
+<!-- Header -->
+<%- include('./partials/header-logueado') %>
+<!-- Header -->
+
 <div class="container products-wrapper">
 	<div class="row">
 		<div class="col-12">
@@ -16,7 +17,7 @@
 		<h2 class="col-12"> 
 			
 			<h2 class = "products-title">Agregar productos</h2>
-			<form action="/ProyectoIntegradorII/ProyectoIntegradorII/routes/product.js" method="get">
+			<form action="/products" method="get">
 
 				<div> 
 					<label for = "image"> Imagen: </label>
@@ -41,5 +42,9 @@
 		</h2>
 	</div>
 </div>
+
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
 </body>
 </html>

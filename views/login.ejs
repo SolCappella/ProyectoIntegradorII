@@ -2,41 +2,41 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('./partials/head') %>
+<body>
+<!-- Header -->
+<%- include('./partials/header') %>
+<!-- Header -->
 
-    <!-- Header -->
-    <%- include('./partials/header') %>
-        <!-- Header -->
+    <div class="form-div">
 
+        <h2 class="products-title bebas-neue-regular">Iniciar Sesión</h2>
 
-        <body>
+            <form action="/profile" method="get" class="forms poppins-regular">
 
+                <div class="form-label-div">
+                    <label for="email" class="form-label"> Usuario: </label>
+                    <input type="email" name="usuario" placeholder="Email" required class="input-text"> 
+                </div>
 
-            <div class="col-12 col-md-4">
+                <div class="form-label-div">
+                    <label for="contraseña" class="form-label"> Contraseña: </label>
+                    <input type="password" name="contraseña" id="contraseña" required class="input-text">
+                </div>
 
-                <h2 class="login-title">Iniciar Sesión</h2>
-                <form action="/routes/login.js" method="get">
+                <div class="form-label-div">
+                    <label for="recordarme" class="form-label"> Recordar informacion de inicio de sesion</label>
+                    <input type="checkbox" name="recordarme" id="recordarme">
+                </div>
+    
+                <div class="form-label-div">
+                    <button type="submit" class="form-submit">Login</button>
+                </div>
 
-                    <div>
-                        <label for="email"> Usuario: </label>
-                        <input type="email" name="usuario" placeholder="Email" required>
-                    </div>
-
-                    <div>
-                        <label for="contraseña"> Contraseña: </label>
-                        <input type="password" name="contraseña" id="contraseña" required>
-                    </div>
-
-                    <div>
-                        <label for="recordarme"> Recordar informacion de inicio de sesion</label>
-                        <input type="checkbox" name="recordarme" id="recordarme">
-
-                        <div>
-                            <button type="submit">Login</button>
-                        </div>
-
-                </form>
-            </div>
+            </form>
+    </div>
             
-        </body>
-
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
+</body>
 </html>

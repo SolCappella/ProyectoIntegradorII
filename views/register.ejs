@@ -2,59 +2,56 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('./partials/head') %>
-
+<body>
 <!-- Header -->
 <%- include('./partials/header') %>
 <!-- Header -->
 
-<body>
+	<div class="form-div">
 
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Registrate</h2>
-			</div>
+		<h2 class="products-title bebas-neue-regular">Regístrate</h2>
 
-			<div class="col-12 col-md-4">
-				<form action="/routes/register.js" method="get">
-							
-				<div class="form-register">
-					<label for="email">Email</label>
-					<input type="email" id="email" name="email" required>
+		<form action="/profile" method="get" class="forms poppins-regular">
+				
+				<div class="form-label-div">
+					<label for="email" class="form-label">Email</label>
+					<input type="email" id="email" name="email" required class="input-text">
 				</div>
 			
-				<div>
-					<label for="usuario">Usuario</label>
-					<input type="text"  id="usuario" name="usuario" required>
+				<div class="form-label-div">
+					<label for="usuario" class="form-label">Usuario</label>
+					<input type="text"  id="usuario" name="usuario" required class="input-text">
 				</div>
 
-				<div>
-					<label for="contraseña">Contraseña</label>
-					<input type="password" id="contraseña" name="contraseña" required>
+				<div class="form-label-div">
+					<label for="contraseña" class="form-label">Contraseña</label>
+					<input type="password" id="contraseña" name="contraseña" required class="input-text">
 				</div>
 
-				<div>
-			  	  <label for="fecha nacimiento">Fecha de nacimiento</label>
-			  	  <input type="date" id="fecha nacimiento" name="fecha nacimiento" required>
+				<div class="form-label-div">
+			  	  <label for="fecha nacimiento" class="form-label">Fecha de nacimiento</label>
+			  	  <input type="date" id="fecha nacimiento" name="fecha nacimiento" required class="input-text">
 				</div>
 
-				<div>
-					<label for="documento">Numero de documento</label>
-					<input type="number" id="documento" name="documento" required>
+				<div class="form-label-div">
+					<label for="documento" class="form-label">Numero de documento</label>
+					<input type="number" id="documento" name="documento" required class="input-text">
 				</div>
 
-				<div>
-					<label for="foto perfil">Foto de perfil</label>
-					<input type="file" name="foto perfil" accept="accept/*" placeholder="Ingresar imagen" required>
+				<div class="form-label-div">
+					<label for="foto perfil" class="form-label">Foto de perfil</label>
+					<input type="file" name="foto perfil" accept="accept/*" placeholder="Ingresar imagen" required class="form-submit">
 				</div>
-					
-				<button type="submit" class="btn btn-primary">Registrarse</button>
-						
-			</form>
-			</div>
+				
+				<div class="form-label-div">
+					<button type="submit" class="form-submit">Registrarse</button>
+				</div>
 
-		</div>
+		</form>
 	</div>
 
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
 </body>
 </html>

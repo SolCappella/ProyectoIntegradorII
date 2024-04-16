@@ -2,29 +2,57 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('./partials/head') %>
-
+<body>
 <!-- Header -->
 <%- include('./partials/header-logueado') %>
 <!-- Header -->
 
-<body>
-<div class="container products-wrapper">
-	<div class="row">
-		<div class="col-12">
-			<h2 class="products-title">Editar mi perfil</h2>
-		</div>
-		<!-- Show the "ultimos" products -->
-		<h2 class="col-12"> <i>///////////////////////////////////////// <br> Acá va el formulario de edición de datos
-				del perfil de usuario. <br>
-				Debe cumplir con los puntos de la consigna y ser coherente con la tabla de la base de datos deñ
-				usuario<br>
-				Eliminen estás líneas y coloquen el formulario. <br>
-				Recuerden todo lo que necesita tanto la etiqueta form como los campos input para operar
-				correctamtente</i> <br>
-			////////////////
-		</h2>
-	</div>
-</div>
+	<div class="form-div">
 
+		<h2 class="products-title bebas-neue-regular">Editar mi perfil</h2>
+
+		<form action="/profile" method="POST" class="poppins-regular forms">
+		
+			<div class="form-label-div">
+				<label for="email" class="form-label">Email:</label>
+				<input type="email" id="email" name="email" required class="input-text">
+			</div>
+
+			<div class="form-label-div">
+				<label for="username" class="form-label">Usuario:</label>
+				<input type="text" id="username" name="usuario" required class="input-text">
+			</div>
+
+			<div class="form-label-div">
+				<label for="password" class="form-label">Contraseña:</label>
+				<input type="password" id="password" name="contraseña" required class="input-text">
+			</div>
+
+			<div class="form-label-div">
+				<label for="birthdate" class="form-label">Fecha de nacimiento:</label>
+				<input type="date" id="birthdate" name="fechaNacimiento" required class="input-text">
+			</div>
+
+			<div class="form-label-div"> 
+				<label for="document" class="form-label">Nro de documento:</label>
+				<input type="number" id="document" name="documento" required class="input-text">
+			</div>
+
+			<div class="form-label-div">
+				<label for="profilePicture" class="form-label">Foto de perfil:</label>
+				<input type="text" id="profilePicture" name="fotoPerfil" class="input-text">
+			</div>
+
+			<div class="form-label-div">
+				<button type="submit" class="form-submit">Actualizar Perfil</button>
+			</div>
+
+		</form>
+		
+	</div>
+
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
 </body>
 </html>

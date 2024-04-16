@@ -2,13 +2,12 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('./partials/head') %>
+<body>
 
-<!-- Header -->    
+ <!-- Header -->    
 <%- include('./partials/header-logueado') %>
 <!-- Header -->
 
-<body>
-    
     <section class="info-usuario container products-wrapper">
         <div class="row">
             <div class="img-container offset-3 col-2">
@@ -16,23 +15,52 @@
             </div>
             <div class="data-container col-6">
                 <div class="d-flex align-items-center ">
-                    <h1 class="main-title"><%= user.usuario %> 
+                    <h1 class="main-title bebas-neue-regular"><%= user.usuario %> 
                         <a href="/profile/edit">
                             <i class="fas fa-cog"></i>
                         </a>
                     </h1>
-                    <a class="btn mt-3 ml-4" href="#">SEGUIR</a>
+                    <a class="btn mt-3 ml-4 poppins-regular" href="#">SEGUIR</a>
                 </div>
                 <div>
-                    <ul class="">
-                        <li><%= stats.productos %> productos</li>
-                        <li><%= stats.seguidores %> seguidores</li>
-                        <li><%= stats.comentarios %> comentarios</li>
+                    <ul class="poppins-regular">
+                        <li><%= stats.products %> productos</li>
+                        <li><%= stats.followers %> seguidores</li>
+                        <li><%= stats.comments %> comentarios</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Mis productos -->
+    <div class="container products-wrapper">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="products-title bebas-neue-regular">Mis productos</h2>
+            </div>
+            <% for(let i = 0; i < userProducts.length; i++) { %>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <section class="product-box">
+                        <a href="/products">
+                            <figure class="product-box_image">
+                                <img src="<%= userProducts[i].imagen%>" alt="<%= userProducts[i].nombre %>">
+                            </figure>
+                            <article class="product-box_data poppins-regular">
+                                <h2 class="bebas-neue-regular"><%= userProducts[i].nombre %></h2>
+                                <p><%= userProducts[i].descripcion %></p>
+                                <p>Comentarios: <%= userProducts[i].comentarios.length %></p>
+                            </article>
+                        </a>
+                    </section>  
+                </div>
+            <% } %>
+        </div>
+    </div>
+    <!-- Mis productos -->
+
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
 </body>
 </html>

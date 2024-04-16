@@ -82,7 +82,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: #9f6ba0;
+  background: linear-gradient(to right, #E065E2, #E999EB);;
 }
 
 .main-header_home-link {
@@ -93,9 +93,7 @@ hr {
 
 .main-header_credit-link {
   display: block;
-}
-
-.main-header_credit-link {
+  color: white;
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
@@ -142,6 +140,7 @@ hr {
 }
 
 .main-navbar {
+  color: white;
   margin-top: 20px;
   display: none;
 }
@@ -152,6 +151,7 @@ hr {
 }
 
 .logout{
+  color: white;
   background: transparent;
   border: 0px;
   cursor: pointer;
@@ -273,7 +273,7 @@ hr {
 }
 
 .product-box:hover p {
-  height: 36px;
+  height: 15vh;
   margin-top: 15px;
 }
 
@@ -451,10 +451,80 @@ flex-direction:column;
 }
 
 /*====== Formularios ======*/
+.forms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 50vw;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+}
+
+.form-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.form-label-div {
+    width: 40vw;
+    height: auto;
+    padding: 0.5vw 0.5vh;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+
 .form-label {
   display: inline-block;
-  font-size: 1.6em;
-  margin: 10px 0;
+  color: #BE238D;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+
+.form-submit {
+  background: linear-gradient(to right, #E065E2, #E999EB); 
+  border: none;
+  color: white; 
+  padding: 15px 32px; 
+  text-align: center; 
+  text-decoration: none; 
+  display: inline-block; 
+  font-size: 16px; 
+  margin: 4px 2px; 
+  cursor: pointer; 
+  border-radius: 4px;
+  transition: background-color 0.15s ease; 
+}
+
+.form-submit:hover {
+  background: #E999EB; 
+}
+
+.form-submit:focus {
+  outline: none; 
+  box-shadow: 0 0 0 2px rgba(255, 69, 196, 0.5);
+}
+
+.input-text {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #BE238D; 
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-text:focus {
+  outline: none;
+  border-color: #EC98D1;
+  box-shadow: 0 0 5px rgba(190, 35, 141, 0.5); 
 }
 
 .form-input {

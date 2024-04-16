@@ -1,20 +1,24 @@
 const db = require('../db/data');
 
-const profileController={
+const profileController = {
     'profile':function (req,res) {
         let user = db.usuario; 
 
         let stats = {
-            productos: 8,
-            seguidores: 200,
-            comentarios: 300,
-        }
+            products: 8,
+            followers: 200,
+            comments: 300,
+        };
 
-        res.render('profile', {user, stats});
+        let userProducts = db.productos;
+
+        res.render('profile', {user, stats, userProducts});
     },
     'edit': function (req, res) {
-        res.render('profile-edit');
+        let user = db.usuario
+        
+        res.render('profile-edit', {user});
     },
-}
+};
 
 module.exports = profileController;
