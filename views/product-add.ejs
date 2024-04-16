@@ -8,40 +8,31 @@
 <%- include('./partials/header-logueado') %>
 <!-- Header -->
 
-<div class="container products-wrapper">
-	<div class="row">
-		<div class="col-12">
-			<h2 class="products-title">Agregar productos</h2>
-		</div>
-		<!-- Show the "ultimos" products -->
-		<h2 class="col-12"> 
-			
-			<h2 class = "products-title">Agregar productos</h2>
-			<form action="/products" method="get">
+	<div class="form-div">
+		<h2 class = "products-title bebas-neue-regular">Agregar productos</h2>
 
-				<div> 
-					<label for = "image"> Imagen: </label>
-					<input type="file" name="Imagen" accept="accept/*" placeholder="Ingresar imagen" required>
-				</div>
+		<form action="/products" method="get" class="forms poppins-regular">
 
-				<div> 
-					<label for = "nombre"> Nombre del producto: </label>
-					<input type="text" name="nombre" id="nombre" required>
-				</div>
+			<div class="form-label-div"> 
+				<label for = "image" class="form-label"> Imagen: </label>
+				<input type="file" name="Imagen" accept="accept/*" placeholder="Ingresar imagen" required class="input-text">		
+			</div>
 
-				<div> 
-					<label for = "descripcion"> Descripcion del producto: </label>
-					<input type="text" name="descripcion" id="descripcion" required>
+			<div class="form-label-div"> 
+				<label for = "nombre" class="form-label"> Nombre del producto: </label>
+				<input type="text" name="nombre" id="nombre" required class="input-text">
+			</div>
+
+			<div class="form-label-div"> 
+				<label for = "descripcion"> Descripcion del producto: </label>
+				<input type="text" name="descripcion" id="descripcion" required class="input-text">
 				
-				<div>
-					<button type="submit">Agregar</button>
-				</div>
+			<div class="form-label-div">
+				<button type="submit" class="form-submit">Agregar</button>
+			</div>
 
-			</form>
-
-		</h2>
+		</form>			
 	</div>
-</div>
 
 <!-- /Footer -->
 <%- include('./partials/footer') %>
