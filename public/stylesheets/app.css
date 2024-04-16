@@ -446,6 +446,8 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  display: block;
+flex-direction:column;
 }
 
 /*====== Formularios ======*/
