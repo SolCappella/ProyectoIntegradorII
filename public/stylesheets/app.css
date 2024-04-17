@@ -172,12 +172,18 @@ hr {
 
 
 /*====== Banner ======*/
-.banner {
-  background-image: url(/images/img-home-banner.jpg);
+.banner{
+  display: flex;
+  background-color: white;
+
+}
+
+.banner-interno {
+  display: block;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 100px;
+  height: 100%;
 }
 
 
