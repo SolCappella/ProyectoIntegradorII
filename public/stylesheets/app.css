@@ -331,6 +331,7 @@ hr {
 /*====== Product Detail ======*/
 .product-detail {
   background-color: #ffffff;
+  padding: 18px;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -344,8 +345,8 @@ hr {
 .product-detail-info {
   border-right: 1px solid var(--light-gray);
   padding: 15px;
-  font-size: 3em;
-  /* height: 100%; */
+  font-size: 1.6em;
+  height: 100%; 
 }
 
 .product-detail-title {
@@ -355,11 +356,9 @@ hr {
 
 .product-detail-description {
   padding: 15px 15px 15px 40px;
-  font-size: 1.8em;
   line-height: 1.5;
+  font-size: 1.8em;
 }
-
-
 
 .product-detail-price {
   font-size: 5.5em;
