@@ -12,7 +12,8 @@ const mainController = {
         res.render('register', { title: "Registrate" })
     },
     'results':function (req,res) {
-        res.render('search-results')
+        let resultados=db.productos;
+        res.render('search-results',{resultados});
     },
 }
 

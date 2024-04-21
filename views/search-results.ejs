@@ -14,11 +14,20 @@
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<h2 class="col-12"> <i>///////////////////////////////////////// <br> 
-				Acá van los resultados de búsqueda. <br>
-				Eliminen estás líneas y cosntruyan la página de resultados de búsqueda. <br>
-				////////////////
-			</h2>
+			<div class="col-12 col-sm-6 col-lg-3">
+                <section class="product-box">
+                    <a href="/products">
+                        <figure class="product-box_image">
+                            <img class="product-inter" src="<%= resultados[0].imagen %>" alt="<%= resultados[0].nombre %>">
+                        </figure>
+                        <article class="product-box_data">
+                            <h2 class="bebas-neue-regular"><%= resultados[0].nombre %></h2>
+                            <p class="poppins-regular"><%= resultados[0].descripcion %></p>
+                            <p class="poppins-regular">Comentarios: <%= resultados[0].comentarios.length %></p>
+                        </article>
+                    </a>
+                </section>
+            </div>
 		</div>
 	</div>
 
