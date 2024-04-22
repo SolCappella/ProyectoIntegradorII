@@ -2,9 +2,9 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('./partials/head') %>
-<body>
 
- <!-- Header -->    
+<body>
+<!-- Header -->    
 <%- include('./partials/header-logueado') %>
 <!-- Header -->
 
@@ -23,7 +23,8 @@
                     <a class="btn mt-3 ml-4 poppins-regular" href="#">SEGUIR</a>
                 </div>
                 <div>
-                    <ul class="poppins-regular">
+                    <ul class="poppins-regular profile-ul">
+                        <li><%= user.email %></li>
                         <li><%= stats.products %> productos</li>
                         <li><%= stats.followers %> seguidores</li>
                         <li><%= stats.comments %> comentarios</li>

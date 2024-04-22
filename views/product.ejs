@@ -28,11 +28,11 @@
 						<% for(let i = 0; i < producto[0].comentarios.length; i++) { %>
 
 							<article>
-								<img src="https://via.placeholder.com/35" alt="">
+								<img src="/images/users/defaultprofile.jpg" alt="">
 						
 								<div class="data">
 									<p class="user">
-										<strong> <a href="profile.html"><%= producto[0].comentarios[i].nombreUsuario %></a> </strong>
+										<strong> <a href="/profile"><%= producto[0].comentarios[i].nombreUsuario %></a> </strong>
 										<%= producto[4].comentarios[i].texto %>
 									</p>
 								</div>
@@ -49,10 +49,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-			<!-- /Footer -->
-			<%- include('./partials/footer') %>
-				<!-- /Footer -->
-		</body>
-
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
+</body>
 </html>

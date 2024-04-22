@@ -125,7 +125,7 @@ const store = {
           id: 1,
           nombreUsuario: 'Ana Maria Rodriguez',
           texto: 'Me encanta la rapidez con la que prepara los batidos. Excelente compra.',
-          imagenPerfil: './images/products/default-image.png ',
+          imagenPerfil: './images/products/defaultprofile.jpg ',
         },
         {
           id: 2,

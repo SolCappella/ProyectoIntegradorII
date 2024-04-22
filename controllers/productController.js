@@ -1,17 +1,17 @@
 const db = require('../db/data');
 
-const productController={
-    'product':function (req,res) {
+const productController = {
+    'product': function (req, res) {
         let producto = db.productos;
-        
-        res.render('product',{producto});
+
+        res.render('product', { producto });
     },
     'add': function (req, res) {
         let user = db.usuario;
 
-        res.render('product-add', {user});
+        res.render('product-add', { user });
     },
 }
 
-module.exports=productController;
+module.exports = productController;
 
