@@ -1,29 +1,8 @@
 # Dependencias
 node_modules/
 
-# Archivos de entorno
-.env
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-
-# Directorio de salida de compilación
-dist/
-
-# Directorios creados por herramientas de análisis de código
-coverage/
-.prettierrc
-
-# Archivos de configuración del editor
-.vscode/
-.idea/
-*.sublime-workspace
-
 # Archivos de paquetes
 package-lock.json
-yarn.lock
 
 # Archivos de compilación de macOS
 .DS_Store
