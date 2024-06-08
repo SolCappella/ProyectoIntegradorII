@@ -1,6 +1,9 @@
 # Dependencias
 node_modules/
 
+# Archivo Config
+db/config/config.js
+
 # Archivos de entorno
 .env
 
@@ -11,10 +14,6 @@ npm-debug.log*
 
 # Directorio de salida de compilación
 dist/
-
-# Directorios creados por herramientas de análisis de código
-coverage/
-.prettierrc
 
 # Archivos de configuración del editor
 .vscode/
