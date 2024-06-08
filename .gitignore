@@ -1,9 +1,6 @@
 # Dependencias
 node_modules/
 
-# Archivo config
-db/config/config.js
-
 # Archivos de entorno
 .env
 
@@ -26,7 +23,6 @@ coverage/
 
 # Archivos de paquetes
 package-lock.json
-yarn.lock
 
 # Archivos de compilación de macOS
 .DS_Store
