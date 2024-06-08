@@ -1,6 +1,9 @@
 # Dependencias
 node_modules/
 
+# Archivo config
+db/config/config.js
+
 # Archivos de entorno
 .env
 
