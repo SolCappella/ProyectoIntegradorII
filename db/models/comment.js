@@ -11,19 +11,19 @@ module.exports = function (sequelize, dataTypes) {
             type: dataTypes.TEXT,
             allowNull: false
         },
-        userId: {
+        user_id: {
             type: dataTypes.INTEGER,
             allowNull: false
         },
-        productId: {
+        product_id: {
             type: dataTypes.INTEGER,
             allowNull: false
         },
-        createdAt: {
+        created_at: {
             type: dataTypes.DATE,
             allowNull: true,
         },
-        updatedAt: {
+        updated_at: {
             type: dataTypes.DATE,
             allowNull: true,
         }
@@ -32,7 +32,7 @@ module.exports = function (sequelize, dataTypes) {
     let config = {
         tableName: "comentarios",
         timestamps: true,        
-        underscored: false,       
+        underscored: true,       
     };
 
     const Comment = sequelize.define(alias, cols, config);
@@ -44,7 +44,7 @@ module.exports = function (sequelize, dataTypes) {
         });
         Comment.belongsTo(models.Product, {
             as: 'product',
-            foreignKey: 'productId'
+            foreignKey: 'product_id'
         });
     }
 
