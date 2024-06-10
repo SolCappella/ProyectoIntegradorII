@@ -7,7 +7,7 @@ module.exports= function(sequelize, dataTypes){
             primaryKey: true,
             type: dataTypes.INTEGER
         },
-        userId:{
+        user_id:{
             type:dataTypes.INTEGER,
             allowNull: false
         },
@@ -42,20 +42,20 @@ module.exports= function(sequelize, dataTypes){
 
 let config = {
     tableName: "productos",
-    timestamps: false, //Si la tabla no tiene los campos created_at y updated_at
-    underscored: true, //Si los nombres de las columnas en la db tienen guiones bajos en lugar de camelCase.
+    timestamps: true, 
+    underscored: true, 
 };
 
 const Product = sequelize.define(alias, cols, config);
 
 Product.associate = function (models) {
     Product.belongsTo(models.User, {
-        as: "user", //Como voy a llamar a la relación dentro del controlador
+        as: "user", 
         foreignKey: "usuario_id",
     }),
        
     Product.hasMany(models.Comment, {
-        as: "comment", //Como voy a llamar a la relación dentro del controlador
+        as: "comment", 
         foreignKey: "product_id",
     })
 };

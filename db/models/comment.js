@@ -40,7 +40,7 @@ module.exports = function (sequelize, dataTypes) {
     Comment.associate = function (models) {
         Comment.belongsTo(models.User, {
             as: 'user',
-            foreignKey: 'userId'
+            foreignKey: 'user_id'
         });
         Comment.belongsTo(models.Product, {
             as: 'product',
