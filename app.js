@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+const db = require('./database/models');
 
 const mainRouter = require('./routes/index');
 const productRouter = require('./routes/product');
@@ -19,6 +21,38 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// use session
+app.use(session(
+  { secret: 'proyectoprogra',
+    resave: 'false',
+    saveUninitialized: true }
+));
+
+app.use(function(req, res, next){
+  if(req.session.user != undefined){
+    res.locals.user = req.session.user;
+    return next();
+  }
+  return next();
+})
+
+app.use(function(req,res, next){
+  if(req.cookies.cookieUser != undefined && req.session.user == undefined){
+    let idCookie = req.cookies.cookieUser;
+
+    db.User.findyByPk(idCookie)
+    .then( user => {
+      req.session.user = user;
+      res.locals.user = user;
+
+      return next();
+    })
+    .catch(err => {console.log(err)})
+  } else {
+    return next();
+  }
+});
 
 app.use('/', mainRouter);
 app.use('/products',productRouter);

@@ -5,7 +5,7 @@ const productos = db2.Product;
 
 const mainController = {
     'index': function (req, res) {
-
+      
         productos.findAll({
             include: [
                 {association: "comment"},
@@ -18,7 +18,6 @@ const mainController = {
         .catch(err => {
             console.log(err);
         })
-
     },
     'login': function mostrarFormLogin(req, res) {
         res.render('login', { title: 'Iniciar sesión' })
