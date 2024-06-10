@@ -25,6 +25,13 @@ const mainController = {
     'register': function (req, res) {
         res.render('register', { title: "Registrate" })
     },
+    'logout': function(req,res){
+        req.session.destroy();
+
+        res.clearCookie('cookieUser');
+        
+        return res.redirect('/')
+    },
     'results': function (req, res) {
         let resultados = db.productos;
         res.render('search-results', { resultados });

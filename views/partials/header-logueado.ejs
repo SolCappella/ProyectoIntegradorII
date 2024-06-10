@@ -38,9 +38,10 @@
                         <%= user.usuario %> <i class="fas fa-user"></i>
                     </a>
                 </li>
-                <li><a href="/">
-                    Cerrar sesion <i class="fas fa-user"></i>
-                    </a>
+                <li>
+                   <form action="/logout" method="post" class="fas fa-user">
+                        <button type="submit"> Cerrar Sesión</button>
+                   </form>
                 </li>
             </ul>
         </nav>
