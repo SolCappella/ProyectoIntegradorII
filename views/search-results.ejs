@@ -8,27 +8,36 @@
 <%- include('./partials/header') %>
 <!-- Header -->
 
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title bebas-neue-regular">Resultados de búsqueda</h2>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-                <section class="product-box">
-                    <a href="/products">
-                        <figure class="product-box_image">
-                            <img class="product-inter" src="<%= resultados[0].imagen %>" alt="<%= resultados[0].nombre %>">
-                        </figure>
-                        <article class="product-box_data">
-                            <h2 class="bebas-neue-regular"><%= resultados[0].nombre %></h2>
-                            <p class="poppins-regular"><%= resultados[0].descripcion %></p>
-                            <p class="poppins-regular">Comentarios: <%= resultados[0].comentarios.length %></p>
-                        </article>
-                    </a>
-                </section>
+    <div class="container products-wrapper">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="products-title bebas-neue-regular">Resultados de búsqueda para "<%= searchQuery %>"</h2>
             </div>
-		</div>
-	</div>
+            <% if (productos.length > 0) { %>
+                <% productos.forEach(producto => { %>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <section class="product-box">
+                            <a href="/products/<%= producto.id %>">
+                                <figure class="product-box_image">
+                                    <img class="product-inter" src="<%= productos.image %>" alt="<%= producto.name %>">
+                                </figure>
+                                <article class="product-box_data">
+                                    <h2 class="bebas-neue-regular"><%= producto.name %></h2>
+                                    <p class="poppins-regular"><%= producto.description %></p>
+                                    <p class="poppins-regular">Comentarios: <%= producto.comments ? producto.comments.length : 0 %></p>
+                                    <p class="poppins-regular">Cargado por: <a href="/profile/<%= producto.usuario_id %>"><%= producto.nombre %></a></p>
+                                </article>
+                            </a>
+                        </section>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="col-12">
+                    <p class="poppins-regular">No hay resultados para su criterio de búsqueda.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
 
 <!-- /Footer -->
 <%- include('./partials/footer') %>

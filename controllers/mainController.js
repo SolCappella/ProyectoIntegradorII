@@ -1,7 +1,6 @@
-const db = require('../database/data');
-const db2 = require('../database/models');
-const usuario = db2.User;
-const productos = db2.Product;
+const db = require('../database/models');
+const usuario = db.User;
+const productos = db.Product;
 const { validationResult } = require('express-validator');
 
 const mainController = {
@@ -56,8 +55,25 @@ const mainController = {
         return res.redirect('/')
     },
     'results': function (req, res) {
-        let resultados = db.productos;
-        res.render('search-results', { resultados });
+
+        let Query=req.query.q;
+
+        productos.findAll({
+            where:{
+                [Op.or]:[
+                    { name:{[Op.like]: `%${Query}%`}},
+                    { descripcion:{[Op.like]: `%${Query}%`}}
+                ]},
+
+            order: [['created_at','DESC']],
+            include:[{model:User, as:'user'}]
+        })
+        .then(productos=>{
+            res.render('search-results',{productos:productos,Query:Query});
+        })
+        .catch(err=>{
+            console.log(err);
+        })
     },
 }
 
