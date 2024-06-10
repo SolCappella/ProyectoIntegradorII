@@ -7,11 +7,11 @@ module.exports = function (sequelize, dataTypes) {
             primaryKey: true,
             type: dataTypes.INTEGER
         },
-        text: {
+        texto: {
             type: dataTypes.TEXT,
             allowNull: false
         },
-        user_id: {
+        usuario_id: {
             type: dataTypes.INTEGER,
             allowNull: false
         },
@@ -40,11 +40,11 @@ module.exports = function (sequelize, dataTypes) {
     Comment.associate = function (models) {
         Comment.belongsTo(models.User, {
             as: 'user',
-            foreignKey: 'user_id'
+            foreignKey: 'usuario_id'
         });
         Comment.belongsTo(models.Product, {
             as: 'product',
-            foreignKey: 'product_id'
+            foreignKey: 'usuario_id'
         });
     }
 

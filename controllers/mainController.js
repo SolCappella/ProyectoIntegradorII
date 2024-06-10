@@ -1,9 +1,24 @@
-const db = require('../db/data');
+const db = require('../database/data');
+const db2 = require('../database/models');
+const usuario = db2.User;
+const productos = db2.Product;
 
 const mainController = {
     'index': function (req, res) {
-        let productos = db.productos;
-        res.render('index', { productos });
+
+        productos.findAll({
+            include: [
+                {association: "comment"},
+                {association: "user"}
+            ]
+        })
+        .then( resultados => {
+            res.render('index', { productos });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+
     },
     'login': function mostrarFormLogin(req, res) {
         res.render('login', { title: 'Iniciar sesión' })

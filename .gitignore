@@ -2,7 +2,7 @@
 node_modules/
 
 # Archivo Config
-db/config/config.js
+database/config/config.js
 
 # Archivos de entorno
 .env
