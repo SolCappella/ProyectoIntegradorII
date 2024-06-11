@@ -1,5 +1,6 @@
 const db = require('../database/models');
 const usuario = db.User;
+const Op= db.Sequelize.Op;
 const productos = db.Product;
 const { validationResult } = require('express-validator');
 
@@ -66,7 +67,8 @@ const mainController = {
                 ]},
 
             order: [['created_at','DESC']],
-            include:[{model:User, as:'user'}]
+            include:[{model:usuario, as:'user'}]
+
         })
         .then(productos=>{
             res.render('search-results',{productos:productos,Query:Query});
