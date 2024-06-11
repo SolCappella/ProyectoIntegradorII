@@ -1,8 +1,9 @@
 const db = require('../database/models');
-const usuario = db.User;
-const Op= db.Sequelize.Op;
-const productos = db.Product;
 const { validationResult } = require('express-validator');
+const Op= db.Sequelize.Op;
+const bcrypt = require('bcryptjs');
+const productos = db.Product;
+const usuario = db.User;
 
 const mainController = {
     'index': function (req, res) {
@@ -46,8 +47,48 @@ const mainController = {
         })
     },
     'register': function (req, res) {
-        res.render('register', { title: "Registrate" })
+        if (req.method === 'POST') {
+            const errors = validationResult(req);
+
+            if (!errors.isEmpty()) {
+                return res.render('register', {
+                    title: 'Registrate',
+                    oldData: req.body,
+                    errors: errors.mapped()
+                });
+            }
+
+            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
+            const user = {
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+                birthdate: req.body.birthdate,
+                dni: req.body.dni,
+                profilePic: req.body.profilePic,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            };
+
+            usuario.create(user)
+                .then(function (user) {
+                    return res.redirect("/login");
+                })
+                .catch(function (err) {
+                    console.log("Error al grabar el usuario", err);
+                    res.redirect('/register');
+                });
+        } else {
+            res.render('register', { 
+                title: "Registrate",
+                oldData: {},
+                errors: {}
+            });
+        }
+        return res.render("register");
     },
+
     'logout': function(req,res){
         req.session.destroy();
 
@@ -70,7 +111,7 @@ const mainController = {
             include:[{model:usuario, as:'user'}]
 
         })
-        .then(productos=>{
+        .then(productos =>{
             res.render('search-results',{productos:productos,Query:Query});
         })
         .catch(err=>{
