@@ -61,33 +61,40 @@ const mainController = {
             const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
             const user = {
-                username: req.body.username,
+                usuario: req.body.username,
                 email: req.body.email,
-                password: hashedPassword,
+                contraseña: hashedPassword,
+                confirmar : hashedPassword,
                 birthdate: req.body.birthdate,
-                dni: req.body.dni,
-                profilePic: req.body.profilePic,
-                createdAt: new Date(),
-                updatedAt: new Date()
+                documento: req.body.dni,
+                imagen: req.body.profilePic,
+
             };
 
+            console.log("Datos del formulario:", req.body); // Verifica los datos recibidos
+            console.log("Datos a insertar:", user); // Verifica los datos antes de guardar
+
             usuario.create(user)
-                .then(function (user) {
-                    return res.redirect("/login");
-                })
-                .catch(function (err) {
-                    console.log("Error al grabar el usuario", err);
-                    res.redirect('/register');
+            .then(user => {
+                return res.redirect("/login");
+            })
+            .catch(err => {
+                console.error("Error al grabar el usuario", err); 
+                return res.render('register', {
+                    title: 'Registrate',
+                    oldData: req.body,
+                    errors: { dbError: { msg: 'Error al grabar el usuario en la base de datos' } }
                 });
-        } else {
-            res.render('register', { 
-                title: "Registrate",
-                oldData: {},
-                errors: {}
             });
-        }
-        return res.render("register");
-    },
+    } else {
+        return res.render('register', { 
+            title: "Registrate",
+            oldData: {},
+            errors: {}
+        });
+    }
+},
+
 
     'logout': function(req,res){
         req.session.destroy();
