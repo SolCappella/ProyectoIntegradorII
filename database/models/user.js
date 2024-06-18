@@ -55,7 +55,7 @@ module.exports = function(sequelize, dataTypes) {
         });
         User.hasMany(models.Comment, {
             as: "comment", 
-            foreignKey: "comment_id",
+            foreignKey: "product_id",
         });
     
     }
