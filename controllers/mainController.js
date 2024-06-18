@@ -105,12 +105,19 @@ const mainController = {
     },
     'results': function (req, res) {
 
-        let Query=req.query.q;
+        let Query=req.query.search;
+
+        if (!Query) {
+            console.log('La query está vacía');
+            return res.render('search-results', { productos: [], Query: '' });
+        }
+
+        console.log('Buscando por:', Query);
 
         productos.findAll({
             where:{
                 [Op.or]:[
-                    { name:{[Op.like]: `%${Query}%`}},
+                    { nombre:{[Op.like]: `%${Query}%`}},
                     { descripcion:{[Op.like]: `%${Query}%`}}
                 ]},
 

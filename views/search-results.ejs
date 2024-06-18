@@ -11,15 +11,15 @@
     <div class="container products-wrapper">
         <div class="row">
             <div class="col-12">
-                <h2 class="products-title bebas-neue-regular">Resultados de búsqueda para "<%= searchQuery %>"</h2>
+                <h2 class="products-title bebas-neue-regular">Resultados de búsqueda para "<%= Query %>"</h2>
             </div>
             <% if (productos.length > 0) { %>
                 <% productos.forEach(producto => { %>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <section class="product-box">
-                            <a href="/products/<%= producto.id %>">
+                            <a href="/product/<%= producto.id %>">
                                 <figure class="product-box_image">
-                                    <img class="product-inter" src="<%= producto.image %>" alt="<%= producto.name %>">
+                                    <img class="product-inter" src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
                                 </figure>
                                 <article class="product-box_data">
                                     <h2 class="bebas-neue-regular"><%= producto.name %></h2>
