@@ -51,39 +51,39 @@ const mainController = {
             const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
+                const errorMessages = {};
+                for (let error in errors.mapped()) {
+                    errorMessages[error] = errors.mapped()[error].msg;
+                }
                 return res.render('register', {
                     title: 'Registrate',
                     oldData: req.body,
-                    errors: errors.mapped()
+                    errors: errorMessages
                 });
             }
-
-            const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
             const user = {
                 usuario: req.body.username,
                 email: req.body.email,
-                contraseña: hashedPassword,
-                confirmar : hashedPassword,
-                birthdate: req.body.birthdate,
-                documento: req.body.dni,
-                imagen: req.body.profilePic,
-
+                username: req.body.username,
+                contraseña: bcrypt.hashSync(req.body.password, 10),
+                fecha: req.body.birthdate,
+                dni: req.body.dni,
+                foto: req.body.profilePic,
+                created_at: new Date(), 
+                updated_at: new Date()  
             };
 
-            console.log("Datos del formulario:", req.body); // Verifica los datos recibidos
-            console.log("Datos a insertar:", user); // Verifica los datos antes de guardar
-
-            usuario.create(user)
-            .then(user => {
+            db.User.create(user)
+                .then(user => {
                 return res.redirect("/login");
             })
-            .catch(err => {
+                .catch(err => {
                 console.error("Error al grabar el usuario", err); 
                 return res.render('register', {
                     title: 'Registrate',
                     oldData: req.body,
-                    errors: { dbError: { msg: 'Error al grabar el usuario en la base de datos' } }
+                        errors: { dbError: 'Error al guardar el usuario' }
                 });
             });
     } else {
