@@ -31,15 +31,14 @@ const registerValidation = [
         }),
 
     body('birthdate')
-        .optional({ checkFalsy: true })
+        .notEmpty().withMessage('Debes introducir tu fecha de cumpleaños').bail()
         .isDate().withMessage('Debe ser una fecha válida'),
 
     body('dni')
-        .optional({ checkFalsy: true })
+        .notEmpty().withMessage('Debes introducir tu dni').bail()
         .isInt().withMessage('Debe ser un número entero válido'),
 
     body('profilePic')
-        .optional({ checkFalsy: true })
         .isString().withMessage('Debe ser una cadena de texto válida')
 ];
 

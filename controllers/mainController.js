@@ -52,19 +52,16 @@ const mainController = {
     'register': function (req, res) {
         if (req.method === 'POST') {
             const errors = validationResult(req);
-
+    
             if (!errors.isEmpty()) {
-                const errorMessages = {};
-                for (let error in errors.mapped()) {
-                    errorMessages[error] = errors.mapped()[error].msg;
-                }
+                const errorMessages = errors.mapped();
                 return res.render('register', {
                     title: 'Registrate',
                     oldData: req.body,
                     errors: errorMessages
                 });
             }
-
+    
             const user = {
                 usuario: req.body.username,
                 email: req.body.email,
@@ -73,31 +70,31 @@ const mainController = {
                 fecha: req.body.birthdate,
                 dni: req.body.dni,
                 foto: req.body.profilePic,
-                created_at: new Date(), 
-                updated_at: new Date()  
+                created_at: new Date(),
+                updated_at: new Date()
             };
-
+    
             db.User.create(user)
                 .then(user => {
-                return res.redirect("/login");
-            })
+                    // Redirige a la página principal con los productos
+                    return res.redirect("/");
+                })
                 .catch(err => {
-                console.error("Error al grabar el usuario", err); 
-                return res.render('register', {
-                    title: 'Registrate',
-                    oldData: req.body,
+                    console.error("Error al grabar el usuario", err);
+                    return res.render('register', {
+                        title: 'Registrate',
+                        oldData: req.body,
                         errors: { dbError: 'Error al guardar el usuario' }
+                    });
                 });
+        } else {
+            return res.render('register', { 
+                title: "Registrate",
+                oldData: {},
+                errors: {}
             });
-    } else {
-        return res.render('register', { 
-            title: "Registrate",
-            oldData: {},
-            errors: {}
-        });
-    }
-},
-
+        }
+    },
 
     'logout': function(req,res){
         req.session.destroy();

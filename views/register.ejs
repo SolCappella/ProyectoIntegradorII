@@ -11,48 +11,53 @@
         <form action="/register" method="POST" class="forms poppins-regular">
             <div class="form-label-div">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" placeholder= "email" required class="input-text" value="<%= oldData ? oldData.email : '' %>" >
+                <input type="email" id="email" name="email" class="input-text" value="<%= oldData ? oldData.email : '' %>">
                 <% if (errors && errors.email) { %>
-                    <p><%= errors.email.msg %></p>
+                    <p class="error-message"><%= errors.email.msg %></p>
                 <% } %>
             </div>
             <div class="form-label-div">
                 <label for="username" class="form-label">Usuario</label>
-                <input type="text" id="username" name="username" placeholder="usuario"required class="input-text" value="<%= oldData ? oldData.username : '' %>">
+                <input type="text" id="username" name="username"  class="input-text" value="<%= oldData ? oldData.username : '' %>">
                 <% if (errors && errors.username) { %>
-                    <p><%= errors.username.msg %></p>
+                    <p class="error-message"><%= errors.username.msg %></p>
                 <% } %>
             </div>
             <div class="form-label-div">
                 <label for="password" class="form-label">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="contraseña" required class="input-text" >
+                <input type="password" id="password" name="password" class="input-text" >
                 <% if (errors && errors.password) { %>
-                    <p><%= errors.password.msg %></p>
+                    <p class="error-message"><%= errors.password.msg %></p>
                 <% } %>
             </div>
             <div class="form-label-div">
                 <label for="password_confirm" class="form-label">Confirmar Contraseña</label>
-                <input type="password" id="password_confirm" name="password_confirm" placeholder="confirmar" required class="input-text">
+                <input type="password" id="password_confirm" name="password_confirm" class="input-text" >
                 <% if (errors && errors.password_confirm) { %>
-                    <p><%= errors.password_confirm.msg %></p>
+                    <p class="error-message"><%= errors.password_confirm.msg %></p>
                 <% } %>
             </div>
-
             <div class="form-label-div">
-                <label for="dni" class="form-label">Numero de documento</label>
-                <input type="number" id="dni" name="dni" placeholder="documento" class="input-text" value="<%= oldData ? oldData.dni : '' %>">
+                <label for="dni" class="form-label">Número de documento</label>
+                <input type="number" id="dni" name="dni" class="input-text" value="<%= oldData ? oldData.dni : '' %>">
+                <% if (errors && errors.dni) { %>
+                    <p class="error-message"><%= errors.dni.msg %></p>
+                <% } %>
             </div>
-
             <div class="form-label-div">
                 <label for="birthdate" class="form-label">Fecha de Nacimiento</label>
                 <input type="date" id="birthdate" name="birthdate" class="input-text" value="<%= oldData ? oldData.birthdate : '' %>">
+                <% if (errors && errors.birthdate) { %>
+                    <p class="error-message"><%= errors.birthdate.msg %></p>
+                <% } %>
             </div>
-
             <div class="form-label-div">
                 <label for="profilePic" class="form-label">Foto de perfil</label>
-                <input type="file" name="profilePic" accept="image/*" placeholder="imagen" class="input-text">
+                <input type="file" name="profilePic" accept="image/*" class="input-text">
+                <% if (errors && errors.profilePic) { %>
+                    <p class="error-message"><%= errors.profilePic.msg %></p>
+                <% } %>
             </div>
-            
             <div class="form-label-div">
                 <button type="submit" class="form-submit">Registrarse</button>
             </div>
