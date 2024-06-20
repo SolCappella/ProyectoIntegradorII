@@ -4,23 +4,26 @@ const Op= db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
 const productos = db.Product;
 const usuario = db.User;
+const commentario= db.Comment;
 
 const mainController = {
     'index': function (req, res) {
-      
         productos.findAll({
             include: [
-                {association: "comment"},
-                {association: "user"}
-            ]
+                { association: "comment" },
+                { association: "user" }
+            ],
+            order:[['created_at','DESC']],
         })
-        .then( resultados => {
-            res.render('index', { productos });
+        .then(resultados => {
+            res.render('index', { productos: resultados });
         })
         .catch(err => {
             console.log(err);
-        })
+            res.render('error', { error: err });
+        });
     },
+    
     'login': function mostrarFormLogin(req, res) {
         const validationErrors = validationResult(req);
 
