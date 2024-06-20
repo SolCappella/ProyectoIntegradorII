@@ -1,58 +1,59 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- Include Head -->
-<%- include('./partials/head') %>
-
+<head>
+    <%- include('./partials/head') %>
+</head>
 <body>
-<!-- Header -->
-<%- include('./partials/header') %>
-<!-- Header -->
+    <%- include('./partials/header') %>
+    
+    <div class="container products-wrapper">
+        <div class="d-flex align-items-center">
+            <h2 class="products-title bebas-neue-regular"><%= product.nombre %></h2>
+            <p class="product-detail-description poppins-regular">
+                <% if (locals.user && locals.user.id === product.usuario_id) { %>
+                    <a href="/products/<%= product.id %>/edit">Editar</a> | 
+                    <form action="/products/<%= product.id %>/delete" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                <% } %>
+            </p>
+        </div>
 
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title bebas-neue-regular"><%=producto[0].nombre%></h2>
-			<p class="product-detail-description poppins-regular">
-			<a href="/products/add">Editar</a>
-			</p>
-		</div>
+        <div class="product-detail">
+            <div class="row">
+                <article class="col-12 col-lg-8 product-detail-info poppins-regular">
+                    <img class="product-detail-img" src="<%= product.imagen_archivo %>" alt="<%= product.nombre %>">
+                    <p class="product-detail-description desc"><%= product.descripcion %></p>
+                </article>
 
-		<div class="product-detail">
-			<div class="row">
-					<article class="col-12 col-lg-8 product-detail-info poppins-regular">
-						<img class="product-detail-img" src=<%=producto[0].imagen%>
-						<p class="product-detail-description desc"><%= producto[0].descripcion %> </p>
-					</article>
+                <div class="col-12 col-lg-4">
+                    <section class="comments poppins-regular">
+                        <% for(let i = 0; i < product.comments.length; i++) { %>
+                            <article>
+                                <img src="/images/users/defaultprofile.jpg" alt="">
+                                <div class="data">
+                                    <p class="user">
+                                        <strong><a href="/profile"><%= product.comments[i].user.email %></a></strong>
+                                        <%= product.comments[i].texto %>
+                                    </p>
+                                </div>
+                            </article>
+                        <% } %>
+                    </section>
+                    
+                    <% if (locals.user) { %>
+                        <form action="/products/<%= product.id %>/comment" method="POST" class="form poppins-regular">
+                            <input type="text" name="texto" placeholder="Agregar comentario" required class="form-input">
+                            <button type="submit" class="buy-now-button poppins-regular">AGREGAR COMENTARIO</button>
+                        </form>
+                    <% } else { %>
+                        <p>Debes estar <a href="/login">logueado</a> para comentar.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
 
-				<div class="col-12 col-lg-4">
-					<section class="comments poppins-regular">
-						<% for(let i = 0; i < producto[0].comentarios.length; i++) { %>
-
-							<article>
-								<img src="/images/users/defaultprofile.jpg" alt="">
-						
-								<div class="data">
-									<p class="user">
-										<strong> <a href="/profile"><%= producto[0].comentarios[i].nombreUsuario %></a> </strong>
-										<%= producto[4].comentarios[i].texto %>
-									</p>
-								</div>
-
-							</article>
-						<% } %>		
-					</section>
-							
-					<form action="/products" method="get" class="form poppins-regular">
-						<input  type="text" value="" placeholder="Agregar comentario" required class="form-input">
-						<button type="submit" class="buy-now-button poppins-regular">AGREGAR COMENTARIO</button>
-					</form>
-
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- /Footer -->
-<%- include('./partials/footer') %>
-<!-- /Footer -->
+    <%- include('./partials/footer') %>
 </body>
 </html>

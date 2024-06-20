@@ -1,11 +1,12 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
+const productos = db.Product;
 
 const productController = {
     'product': function (req, res) {
-        let producto = db.Product.findByPk(req.params.id, {
+        let producto = productos.findByPk(req.params.id, {
             include: [
-                { association: "comment" },
+                { association: "comment" , include: ["user"]},
                 { association: "user" }
             ]
         });
@@ -14,11 +15,11 @@ const productController = {
             if (product) {
                 res.render('product', { product });
             } else {
-                res.status(404).render('error', { error: 'Producto no encontrado' });
+                res.render('error', { error: 'Producto no encontrado' });
             }
         }).catch(err => {
             console.log(err);
-            res.status(500).render('error', { error: 'Error al buscar el producto' });
+            res.render('error', { error: 'Error al buscar el producto' });
         });
     },
 
@@ -42,7 +43,7 @@ const productController = {
         }
 
         // Si no hay errores, procede a crear el producto.
-        db.Product.create({
+        productos.create({
             usuario_id: req.session.user.id,
             imagen_archivo: req.body.imagen_archivo,
             nombre: req.body.nombre,
@@ -53,9 +54,33 @@ const productController = {
             res.redirect('/products/' + product.id);
         }).catch(err => {
             console.log(err);
-            res.status(500).render('error', { error: 'Error al crear el producto' });
+            res.render('error', { error: 'Error al crear el producto' });
         
         });
-    }}
+    },
+
+    'delete': function (req, res) {
+        let productId = req.params.id;
+        let userId = req.session.user.id;
+
+        productos.findByPk(productId).then(product => {
+            if (!product) {
+                return res.status(404).render('error', { message: 'Producto no encontrado' });
+            }
+
+            if (product.usuario_id !== userId) {
+                return res.status(403).render('error', { message: 'No tienes permiso para eliminar este producto' });
+            }
+
+            return productos.destroy({ where: { id: productId } });
+        }).then(() => {
+            return res.redirect('/');
+        }).catch(err => {
+            console.log(err);
+            return res.status(500).render('error', { message: 'Error al eliminar el producto' });
+        });
+    }
+
+};
 
 module.exports = productController;

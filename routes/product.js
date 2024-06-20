@@ -3,8 +3,11 @@ const router=express.Router();
 const productController=require('../controllers/productController');
 const{productValidation} =require('../middlewares/product-validator');
 
-router.get('/', productController.product);
+
 router.get('/add', productController.add);
-router.post ('/add', productValidation , productController.create)
+router.post ('/add', productValidation , productController.create);
+router.get('/:id', productController.product);
+router.post('/:id/delete', productController.delete);
+
 
 module.exports = router;

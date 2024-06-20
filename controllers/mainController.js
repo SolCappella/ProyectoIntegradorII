@@ -15,8 +15,8 @@ const mainController = {
             ],
             order:[['created_at','DESC']],
         })
-        .then(resultados => {
-            res.render('index', { productos: resultados });
+        .then(productos => {
+            res.render('index', { productos });
         })
         .catch(err => {
             console.log(err);
