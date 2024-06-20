@@ -28,14 +28,15 @@ const mainController = {
         const validationErrors = validationResult(req);
 
         if(!validationErrors.isEmpty()){
-            return res.render("login", { title: 'Iniciar sesión'}, {
+            return res.render("login", { 
+                title: 'Iniciar sesión',
                 errors: validationErrors.mapped(),
                 oldData: req.body
             })
         }
 
         usuario.findOne({
-            where: [{email: req.body.email}]
+            where: {email: req.body.email}
         })
         .then( function(user) {
             req.session.user = user;
@@ -65,7 +66,6 @@ const mainController = {
             const user = {
                 usuario: req.body.username,
                 email: req.body.email,
-                username: req.body.username,
                 contraseña: bcrypt.hashSync(req.body.password, 10),
                 fecha: req.body.birthdate,
                 dni: req.body.dni,

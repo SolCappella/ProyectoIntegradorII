@@ -14,18 +14,28 @@
 		<form action="/products" method="get" class="forms poppins-regular">
 
 			<div class="form-label-div"> 
-				<label for = "image" class="form-label"> Imagen: </label>
-				<input type="file" name="Imagen" accept="accept/*" placeholder="Ingresar imagen" required class="input-text">		
+				<label for = "imagen_archivo" class="form-label"> Imagen: </label>
+				<input type="file" id="imagen_archivo" name="imagen_archivo" accept="accept/*" placeholder="Ingresar imagen" value="<%= oldData ? oldData.imagen_archivo : '' %>" >
+				<% if (errors && errors.imagen_archivo) { %>
+					<p class="errors-message"> <%= errors.imagen_archivo %></p>
+				<% } %>
 			</div>
 
 			<div class="form-label-div"> 
 				<label for = "nombre" class="form-label"> Nombre del producto: </label>
-				<input type="text" name="nombre" id="nombre" required class="input-text">
+				<input type="text" id="nombre" name="nombre"  value="<%= oldData ? oldData.nombre : '' %>">
+				<% if (errors && errors.nombre) { %>
+					<p class="errors-message"> <%= errors.nombre %></p>
+				<% } %>
 			</div>
 
 			<div class="form-label-div"> 
 				<label for = "descripcion"> Descripcion del producto: </label>
-				<input type="text" name="descripcion" id="descripcion" required class="input-text">
+				<input type="text" id="descripcion" name="descripcion"  value="<%= oldData ? oldData.descripcion : '' %>">
+				<% if (errors && errors.descripcion) { %>
+					<p class="errors-message"> <%= errors.descripcion %></p>
+				<% } %>
+			</div>
 				
 			<div class="form-label-div">
 				<button type="submit" class="form-submit">Agregar</button>
