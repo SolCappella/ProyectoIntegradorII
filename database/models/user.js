@@ -7,6 +7,10 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        usuario: {
+            type: dataTypes.STRING,
+            allowNull: false
+        },
         email: {
             type: dataTypes.STRING,
             allowNull: false
