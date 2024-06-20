@@ -19,13 +19,13 @@
                         <section class="product-box">
                             <a href="/product/<%= producto.id %>">
                                 <figure class="product-box_image">
-                                    <img class="product-inter" src="<%= producto.imagen %>" alt="<%= producto.nombre %>">
+                                    <img class="product-inter" src="<%= producto.imagen_archivo %>" alt="<%= producto.nombre %>">
                                 </figure>
                                 <article class="product-box_data">
-                                    <h2 class="bebas-neue-regular"><%= producto.name %></h2>
+                                    <h2 class="bebas-neue-regular"><%= producto.nombre %></h2>
                                     <p class="poppins-regular"><%= producto.description %></p>
-                                    <p class="poppins-regular">Comentarios: <%= producto.comments ? producto.comments.length : 0 %></p>
-                                    <p class="poppins-regular">Cargado por: <a href="/profile/<%= producto.usuario_id %>"><%= producto.nombre %></a></p>
+                                    <p class="poppins-regular">Comentarios: <%= producto.comments ? producto.comentario.length : 0 %></p>
+                                    <p class="poppins-regular">Cargado por: <%= producto.user.email %></p>
                                 </article>
                             </a>
                         </section>

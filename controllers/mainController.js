@@ -4,7 +4,7 @@ const Op= db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
 const productos = db.Product;
 const usuario = db.User;
-const commentario= db.Comment;
+const comentario= db.Comment;
 
 const mainController = {
     'index': function (req, res) {
@@ -122,7 +122,12 @@ const mainController = {
                 ]},
 
             order: [['created_at','DESC']],
-            include:[{model:usuario, as:'user'}]
+            include:[
+                {model:usuario, as:'user'},
+                {model:comentario, as:'comment'}
+
+            ],
+
 
         })
         .then(productos =>{
