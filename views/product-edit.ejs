@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('./partials/head') %>
+</head>
+<body>
+    <% if (user) { %>
+        <%- include('./partials/header-logueado') %>
+    <% } else { %>
+        <%- include('./partials/header') %>
+    <% } %>
+
+    <div class="form-div">
+        <h2 class="products-title bebas-neue-regular"> Editar producto</h2>
+
+        <form action="/products/edit/<%= product.id %>" method="post" class="forms poppins-regular">
+            <div class="form-label-div">
+                <label for="imagen_archivo" class="form-label">Imagen:</label>
+                <input type="file" id="imagen_archivo" name="imagen_archivo" accept="image/*" value="<%= oldData.imagen_archivo %>">
+                <% if (errors && errors.imagen_archivo) { %>
+                    <p class="errors-message"><%= errors.imagen_archivo.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-label-div">
+                <label for="nombre" class="form-label">Nombre del producto:</label>
+                <input type="text" id="nombre" name="nombre" value="<%= oldData.nombre %>">
+                <% if (errors && errors.nombre) { %>
+                    <p class="errors-message"><%= errors.nombre.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-label-div">
+                <label for="descripcion" class="form-label">Descripción del producto:</label>
+                <input type="text" id="descripcion" name="descripcion" value="<%= oldData.descripcion %>">
+                <% if (errors && errors.descripcion) { %>
+                    <p class="errors-message"><%= errors.descripcion.msg %></p>
+                <% } %>
+            </div>
+
+            <div class="form-label-div">
+                <button type="submit" class="form-submit">Guardar cambios</button>
+            </div>
+        </form>
+    </div>
+
+    <%- include('./partials/footer') %>
+</body>
+</html>

@@ -122,6 +122,13 @@ const productController = {
             console.log(err);
             res.render('error', { message: 'Error al agregar el comentario', error: err });
         });
+    },
+    'edit': function(req, res) {
+        // Hacer un findByPk para encontrar el producto, si pertenece al usuario dejarlo editar y renderizar la vista
+        res.render('product-edit')
+    },
+    'update': function(req, res) {
+        // Controller para el form POST para editar el producto. Hacer un productos.update con la info nueva que viene del form
     }
 };
 
