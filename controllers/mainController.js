@@ -47,7 +47,7 @@ const mainController = {
                         req.session.user = {
                             id: user.id,
                             email: user.email,
-                            username: user.usuario
+                            usuario: user.usuario
                         };
 
                         if (req.body.recordarme) {

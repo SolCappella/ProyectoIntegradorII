@@ -53,7 +53,6 @@ app.use(function(req, res, next) {
   }
 });
 
-
 app.use('/', mainRouter);
 app.use('/products',productRouter);
 app.use('/profile', profileRouter);
