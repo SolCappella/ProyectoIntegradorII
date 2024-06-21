@@ -1,6 +1,7 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const productos = db.Product;
+const comentarios = db.Comment;
 
 const productController = {
     'product': function (req, res) {
@@ -81,6 +82,45 @@ const productController = {
         }).catch(err => {
             console.log(err);
             return res.render('error', { message: 'Error al eliminar el producto' });
+        });
+    },
+
+    'addComment': function (req, res) {
+        if (!req.session.user) {
+            return res.redirect('/login');
+        }
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return productos.findByPk(req.body.product_id, {
+                include: [
+                    { association: "comments", include: ["user"] },
+                    { association: "user" }
+                ]
+            })
+            .then(product => {
+                if (product) {
+                    return res.render('product', { product, errors: errors.mapped() });
+                } else {
+                    return res.render('error', { message: 'Producto no encontrado', error: {} });
+                }
+            }).catch(err => {
+                console.log(err);
+                return res.render('error', { message: 'Error al buscar el producto', error: err });
+            });
+        }
+
+        comentarios.create({
+            product_id: req.body.product_id,
+            usuario_id: req.session.user.id,
+            texto: req.body.texto,
+            created_at: new Date(),
+            updated_at: new Date()
+        }).then(() => {
+            res.redirect(`/products/${req.body.product_id}`);
+        }).catch(err => {
+            console.log(err);
+            res.render('error', { message: 'Error al agregar el comentario', error: err });
         });
     }
 };

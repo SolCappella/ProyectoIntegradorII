@@ -51,8 +51,12 @@
                     
                     <% if (locals.user) { %>
                         <form action="/products/<%= product.id %>/comment" method="POST" class="form poppins-regular">
+                            <input type="hidden" name="product_id" value="<%= product.id %>">
                             <input type="text" name="texto" placeholder="Agregar comentario" required class="form-input">
-                            <button type="submit" class="buy-now-button poppins-regular">AGREGAR COMENTARIO</button>
+                            <% if (errors.texto) { %>
+                                <p><%= errors.texto.msg %></p>
+                            <% } %>
+                            <button type="submit" class="buy-now-button poppins-regular">Agregar comentario</button>
                         </form>
                     <% } else { %>
                         <p class="login-message">Debes estar <a href="/login">logueado</a> para comentar.</p>
