@@ -1,10 +1,10 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
-const Op= db.Sequelize.Op;
+const Op = db.Sequelize.Op;
 const bcrypt = require('bcryptjs');
 const productos = db.Product;
 const usuario = db.User;
-const comentario= db.Comment;
+const comentario = db.Comment;
 
 const mainController = {
     'index': function (req, res) {
@@ -13,47 +13,65 @@ const mainController = {
                 { association: "comment" },
                 { association: "user" }
             ],
-            order:[['created_at','DESC']],
+            order: [['created_at', 'DESC']],
         })
-        .then(productos => {
-            res.render('index', { productos });
-        })
-        .catch(err => {
-            console.log(err);
-            res.render('error', { error: err });
-        });
+            .then(productos => {
+                res.render('index', { productos});
+            })
+            .catch(err => {
+                console.log(err);
+                res.render('error', { error: err });
+            });
     },
-    
-    'login': function mostrarFormLogin(req, res) {
+    'login': function (req, res) {
+        res.render('login', { title: 'Iniciar sesión', errors: {}, oldData: {} });
+    },
+    'processLogin': function (req, res) {
         const validationErrors = validationResult(req);
 
-        if(!validationErrors.isEmpty()){
-            return res.render("login", { 
+        if (!validationErrors.isEmpty()) {
+            return res.render("login", {
                 title: 'Iniciar sesión',
                 errors: validationErrors.mapped(),
                 oldData: req.body
-            })
+            });
         }
 
         usuario.findOne({
-            where: {email: req.body.email}
+            where: { email: req.body.email }
         })
-        .then( function(user) {
-            req.session.user = user;
+        .then(user => {
+            if (user) {
+                const isPasswordValid = bcrypt.compareSync(req.body.password, user.contraseña);
+                    if (isPasswordValid) {
+                        req.session.user = {
+                            id: user.id,
+                            email: user.email,
+                            username: user.usuario
+                        };
 
-            if(req.body.recordarme){
-                res.cookie('cookieUser', user.id, { maxAge: 1000 * 60 * 100})
-            }
-            return res.redirect('/');
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+                        if (req.body.recordarme) {
+                            res.cookie('cookieUser', user.id, { maxAge: 1000 * 60 * 60}); 
+                        }
+
+                        return res.redirect('/');
+                    }
+                }
+
+                return res.render("login", { 
+                    title: 'Iniciar sesión',
+                    errors: { login: { msg: 'Email o contraseña incorrectos' } },
+                    oldData: req.body
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
     },
     'register': function (req, res) {
         if (req.method === 'POST') {
             const errors = validationResult(req);
-    
+
             if (!errors.isEmpty()) {
                 const errorMessages = errors.mapped();
                 return res.render('register', {
@@ -62,7 +80,7 @@ const mainController = {
                     errors: errorMessages
                 });
             }
-    
+
             const user = {
                 usuario: req.body.username,
                 email: req.body.email,
@@ -73,10 +91,9 @@ const mainController = {
                 created_at: new Date(),
                 updated_at: new Date()
             };
-    
+
             db.User.create(user)
                 .then(user => {
-                    // Redirige a la página principal con los productos
                     return res.redirect("/login");
                 })
                 .catch(err => {
@@ -88,7 +105,7 @@ const mainController = {
                     });
                 });
         } else {
-            return res.render('register', { 
+            return res.render('register', {
                 title: "Registrate",
                 oldData: {},
                 errors: {}
@@ -96,16 +113,16 @@ const mainController = {
         }
     },
 
-    'logout': function(req,res){
+    'logout': function (req, res) {
         req.session.destroy();
 
         res.clearCookie('cookieUser');
-        
+
         return res.redirect('/')
     },
     'results': function (req, res) {
 
-        let Query=req.query.search;
+        let Query = req.query.search;
 
         if (!Query) {
             console.log('La query está vacía');
@@ -115,27 +132,28 @@ const mainController = {
         console.log('Buscando por:', Query);
 
         productos.findAll({
-            where:{
-                [Op.or]:[
-                    { nombre:{[Op.like]: `%${Query}%`}},
-                    { descripcion:{[Op.like]: `%${Query}%`}}
-                ]},
+            where: {
+                [Op.or]: [
+                    { nombre: { [Op.like]: `%${Query}%` } },
+                    { descripcion: { [Op.like]: `%${Query}%` } }
+                ]
+            },
 
-            order: [['created_at','DESC']],
-            include:[
-                {model:usuario, as:'user'},
-                {model:comentario, as:'comment'}
+            order: [['created_at', 'DESC']],
+            include: [
+                { model: usuario, as: 'user' },
+                { model: comentario, as: 'comment' }
 
             ],
 
 
         })
-        .then(productos =>{
-            res.render('search-results',{productos:productos,Query:Query});
-        })
-        .catch(err=>{
-            console.log(err);
-        })
+            .then(productos => {
+                res.render('search-results', { productos: productos, Query: Query });
+            })
+            .catch(err => {
+                console.log(err);
+            })
     },
 }
 

@@ -5,7 +5,11 @@
 
 <body>
 <!-- Header -->
-<%- include('./partials/header') %>
+<% if (user) { %>
+    <%- include('./partials/header-logueado') %>
+<% } else { %>
+    <%- include('./partials/header') %>
+<% } %>
 <!-- Header -->
 
 	<div class="form-div">

@@ -5,7 +5,13 @@
     <title>Registrate</title>
 </head>
 <body>
+
+<% if (user) { %>
+    <%- include('./partials/header-logueado') %>
+<% } else { %>
     <%- include('./partials/header') %>
+<% } %>
+
     <div class="form-div">
         <h2 class="products-title bebas-neue-regular">Regístrate</h2>
         <form action="/register" method="POST" class="forms poppins-regular">
