@@ -4,14 +4,14 @@ const productos = db.Product;
 
 const productController = {
     'product': function (req, res) {
-        let producto = productos.findByPk(req.params.id, {
+       productos.findByPk(req.params.id, {
             include: [
                 { association: "comment" , include: ["user"]},
                 { association: "user" }
             ]
-        });
+        })
 
-        producto.then(product => {
+        .then(product => {
             if (product) {
                 res.render('product', { product });
             } else {
@@ -31,9 +31,8 @@ const productController = {
     },
 
     'create': function (req, res) {
-        // Aquí puedes agregar la lógica para crear el producto,
-        // incluyendo validaciones y manejo de errores.
-        const errors = {}; // Aquí debes agregar la lógica para manejar los errores de validación.
+        
+        const errors = {}; 
 
         if (Object.keys(errors).length > 0) {
             return res.render('product-add', {
@@ -60,16 +59,20 @@ const productController = {
     },
 
     'delete': function (req, res) {
-        let productId = req.params.id;
-        let userId = req.session.user.id;
+        let productId = req.body.id;
+        let userId = req.session.user ? req.session.user.id : undefined;
+
+        if (!userId) {
+            return res.render('error', { message: 'Debes estar logueado para realizar esta acción' });
+        }
 
         productos.findByPk(productId).then(product => {
             if (!product) {
-                return res.status(404).render('error', { message: 'Producto no encontrado' });
+                return res.render('error', { message: 'Producto no encontrado' });
             }
 
             if (product.usuario_id !== userId) {
-                return res.status(403).render('error', { message: 'No tienes permiso para eliminar este producto' });
+                return res.render('error', { message: 'No tienes permiso para eliminar este producto' });
             }
 
             return productos.destroy({ where: { id: productId } });
@@ -77,10 +80,10 @@ const productController = {
             return res.redirect('/');
         }).catch(err => {
             console.log(err);
-            return res.status(500).render('error', { message: 'Error al eliminar el producto' });
+            return res.render('error', { message: 'Error al eliminar el producto' });
         });
     }
-
 };
+
 
 module.exports = productController;

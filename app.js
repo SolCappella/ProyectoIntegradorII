@@ -29,30 +29,30 @@ app.use(session(
     saveUninitialized: true }
 ));
 
-app.use(function(req, res, next){
-  if(req.session.user != undefined){
-    res.locals.user = req.session.user;
-    return next();
-  }
-  return next();
-})
+app.use(function(req, res, next) {
+  res.locals.user = req.session.user || undefined;
+  next();
+});
 
-app.use(function(req,res, next){
-  if(req.cookies.cookieUser != undefined && req.session.user == undefined){
+app.use(function(req, res, next) {
+  if (req.cookies.cookieUser != undefined && req.session.user == undefined) {
     let idCookie = req.cookies.cookieUser;
 
-    db.User.findyByPk(idCookie)
-    .then( user => {
-      req.session.user = user;
-      res.locals.user = user;
-
-      return next();
-    })
-    .catch(err => {console.log(err)})
+    db.User.findByPk(idCookie)
+      .then(user => {
+        req.session.user = user;
+        res.locals.user = user;
+        next();
+      })
+      .catch(err => {
+        console.log(err);
+        next();
+      });
   } else {
-    return next();
+    next();
   }
 });
+
 
 app.use('/', mainRouter);
 app.use('/products',productRouter);

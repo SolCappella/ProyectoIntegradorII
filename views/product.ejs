@@ -4,15 +4,19 @@
     <%- include('./partials/head') %>
 </head>
 <body>
-    <%- include('./partials/header') %>
+    <% if (locals.user) { %>
+        <%- include('./partials/header-logueado') %>
+    <% } else { %>
+        <%- include('./partials/header') %>
+    <% } %>
     
     <div class="container products-wrapper">
         <div class="d-flex align-items-center">
             <h2 class="products-title bebas-neue-regular"><%= product.nombre %></h2>
             <p class="product-detail-description poppins-regular">
                 <% if (locals.user && locals.user.id === product.usuario_id) { %>
-                    <a href="/products/<%= product.id %>/edit">Editar</a> | 
-                    <form action="/products/<%= product.id %>/delete" method="POST" style="display:inline;">
+                    <form action="/products/delete" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="<%= product.id %>">
                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
                 <% } %>
@@ -28,16 +32,20 @@
 
                 <div class="col-12 col-lg-4">
                     <section class="comments poppins-regular">
-                        <% for(let i = 0; i < product.comments.length; i++) { %>
-                            <article>
-                                <img src="/images/users/defaultprofile.jpg" alt="">
-                                <div class="data">
-                                    <p class="user">
-                                        <strong><a href="/profile"><%= product.comments[i].user.email %></a></strong>
-                                        <%= product.comments[i].texto %>
-                                    </p>
-                                </div>
-                            </article>
+                        <% if (product.comment && product.comment.length > 0) { %>
+                            <% for(let i = 0; i < product.comment.length; i++) { %>
+                                <article>
+                                    <img src="/images/users/defaultprofile.jpg" alt="">
+                                    <div class="data">
+                                        <p class="user">
+                                            <strong><a href="/profile/<%= product.comment[i].user.id %>"><%= product.comment[i].user.email %></a></strong>
+                                            <%= product.comment[i].texto %>
+                                        </p>
+                                    </div>
+                                </article>
+                            <% } %>
+                        <% } else { %>
+                            <p>No hay comentarios.</p>
                         <% } %>
                     </section>
                     
@@ -47,7 +55,7 @@
                             <button type="submit" class="buy-now-button poppins-regular">AGREGAR COMENTARIO</button>
                         </form>
                     <% } else { %>
-                        <p>Debes estar <a href="/login">logueado</a> para comentar.</p>
+                        <p class="login-message">Debes estar <a href="/login">logueado</a> para comentar.</p>
                     <% } %>
                 </div>
             </div>

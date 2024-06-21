@@ -77,7 +77,7 @@ const mainController = {
             db.User.create(user)
                 .then(user => {
                     // Redirige a la página principal con los productos
-                    return res.redirect("/");
+                    return res.redirect("/login");
                 })
                 .catch(err => {
                     console.error("Error al grabar el usuario", err);
