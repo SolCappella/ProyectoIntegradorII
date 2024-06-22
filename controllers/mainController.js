@@ -50,8 +50,13 @@ const mainController = {
                             usuario: user.usuario
                         };
 
+                        const userId = user.id;
+                        console.log('Estableciendo cookie:', userId);
+
+
+
                         if (req.body.recordarme) {
-                            res.cookie('cookieUser', user.id, { maxAge: 1000 * 60 * 60}); 
+                            res.cookie('cookieUser', userId, { maxAge: 1000 * 60 * 60}); 
                         }
 
                         return res.redirect('/');

@@ -35,12 +35,17 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(req, res, next) {
-  if (req.cookies.cookieUser != undefined && req.session.user == undefined) {
+  if (req.cookies.cookieUser  && !req.session.user) {
     let idCookie = req.cookies.cookieUser;
+  console.log('Cargando cookie en la sesión:', idCookie);
 
     db.User.findByPk(idCookie)
       .then(user => {
-        req.session.user = user;
+        req.session.user = {
+          id: user.id,
+          email:user.email,
+          usuario:user.usuario
+        };
         res.locals.user = user;
         next();
       })
