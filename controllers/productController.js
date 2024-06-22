@@ -33,31 +33,50 @@ const productController = {
     },
 
     'create': function (req, res) {
-        
-        const errors = {}; 
+        const productController = {
+            'create': function (req, res) {
+                const userId = req.cookies.cookieUser;
+                console.log('Cookie userId:', userId);
 
-        if (Object.keys(errors).length > 0) {
-            return res.render('product-add', {
-                oldData: req.body,
-                errors: errors
-            });
-        }
-    
-        // Si no hay errores, procede a crear el producto.
-        const product= productos.create({
-            usuario_id: req.session.user.id,
-            imagen_archivo: req.body.imagen_archivo,
-            nombre: req.body.nombre,
-            descripcion: req.body.descripcion,
-            created_at: new Date(),
-            updated_at: new Date()
-        }).then(product => {
-            res.redirect('/products/' + product.id);
-        }).catch(err => {
-            console.log(err);
-            res.render('error', { error: 'Error al crear el producto' });
+                if (!userId) {
+                    console.log('Error: El usuario no está logueado.');
+                    return res.render('error', { error: 'Debes estar logueado para agregar un producto.' });
+                }
         
-        });
+                usuarios.findOne({ where: { id: userId } })
+                    .then(user => { 
+                        const errors = validationResult(req);
+                        console.log('Usuario encontrado:', user);
+
+                        if (!errors.isEmpty()) {
+                            return res.render('product-add', {
+                                oldData: req.body,
+                                errors: errors.mapped()
+                            });
+                        }
+        
+                        productos.create({
+                            usuario_id: user.id,
+                            imagen_archivo: req.body.imagen_archivo,
+                            nombre: req.body.nombre,
+                            descripcion: req.body.descripcion,
+                            created_at: new Date(),
+                            updated_at: new Date()
+                        })
+                        .then(product => {
+                            res.redirect('/products/' + product.id);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                            res.render('error', { error: 'Error al crear el producto' });
+                        });
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        res.render('error', { error: 'Error al verificar el usuario' });
+                    });
+            },
+        };
     },
 
     'delete': function (req, res) {
