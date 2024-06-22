@@ -11,6 +11,6 @@ router.get('/:id', productController.product);
 router.get('/edit/:id', productController.edit);
 router.post('/edit/:id', productValidation, productController.update)
 router.post('/delete', productController.delete);
-router.post('/addComment', commentValidation, productController.addComment);
+router.post('/:id/comment', commentValidation, productController.addComment);
 
 module.exports = router;

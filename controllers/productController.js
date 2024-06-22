@@ -14,7 +14,7 @@ const productController = {
 
         .then(product => {
             if (product) {
-                res.render('product', { product });
+                res.render('product', { product , errors: {}  });
             } else {
                 res.render('error', { error: 'Producto no encontrado' });
             }
@@ -86,13 +86,9 @@ const productController = {
     },
 
     'addComment': function (req, res) {
-        if (!req.session.user) {
-            return res.redirect('/login');
-        }
-
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return productos.findByPk(req.body.product_id, {
+            return productos.findByPk(req.body.id, {
                 include: [
                     { association: "comments", include: ["user"] },
                     { association: "user" }
@@ -102,11 +98,11 @@ const productController = {
                 if (product) {
                     return res.render('product', { product, errors: errors.mapped() });
                 } else {
-                    return res.render('error', { message: 'Producto no encontrado', error: {} });
+                    return res.render('error', { message: 'Producto no encontrado' });
                 }
             }).catch(err => {
                 console.log(err);
-                return res.render('error', { message: 'Error al buscar el producto', error: err });
+                return res.render('error', { message: 'Error al buscar el producto' });
             });
         }
 
@@ -117,7 +113,8 @@ const productController = {
             created_at: new Date(),
             updated_at: new Date()
         }).then(() => {
-            res.redirect(`/products/${req.body.product_id}`);
+            res.redirect('/products/' + req.body.product_id);
+
         }).catch(err => {
             console.log(err);
             res.render('error', { message: 'Error al agregar el comentario', error: err });
