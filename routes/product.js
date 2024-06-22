@@ -10,7 +10,7 @@ router.post('/add', productValidation , productController.create);
 router.get('/:id', productController.product);
 router.get('/edit/:id', productController.edit);
 router.post('/edit/:id', productValidation, productController.update)
-router.post('/delete', productController.delete);
+router.post('/:id/delete', productController.delete);
 router.post('/:id/comment', commentValidation, productController.addComment);
 
 module.exports = router;
