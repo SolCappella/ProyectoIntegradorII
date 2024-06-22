@@ -3,34 +3,31 @@ const productos = db.Product;
 const usuario = db.User;
 
 const profileController = {
-    'profile': function (req ,res) {
-        const userId = req.session.user.id;
-        
-        usuario.findByPk(userId)
-            .then(user => {
-                if (!user) {
-                    return res.redirect('/login');
+    'profile': function (req, res) {
+        const userId = req.params.id;
+
+        usuario.findByPk(userId, {
+            include: [
+                {
+                    model: productos,
+                    as: 'product',
+                    order: [['created_at', 'DESC']]
+                }
+            ]
+        })
+            .then(userProfile => {
+                if (!userProfile) {
+                    return res.render('error', { message: 'Usuario no encontrado' });
                 }
 
-                productos.findAll({
-                    where: { usuario_id: userId},
-                    order: [['created_at', 'DESC']]
-                })
-                .then(userProducts => {
-                    res.render('profile', {
-                        user: user,
-                        userProducts: userProducts
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
-                }) 
+                res.render('profile', {userProfile: userProfile, userProducts: userProfile.product, loggedUser: req.session.user });
             })
             .catch(err => {
                 console.log(err);
-            }) 
-    } ,
-    'edit': function (req ,res) {
+                res.render('error', { error: err });
+            })
+    },
+    'edit': function (req, res) {
         res.render("profile-edit")
     },
 };

@@ -10,7 +10,6 @@ const mainController = {
     'index': function (req, res) {
         productos.findAll({
             include: [
-                { association: "comment" },
                 { association: "user" }
             ],
             order: [['created_at', 'DESC']],
