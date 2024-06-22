@@ -62,7 +62,7 @@ const productController = {
                     descripcion: req.body.descripcion,
                     created_at: new Date(),
                     updated_at: new Date(),
-                    deleted_at: null  // Establecer deleted_at a null explícitamente
+                    deleted_at: null  
                 })
                 .then(product => {
                     res.redirect('/products/' + product.id);
