@@ -9,4 +9,4 @@ const productValidation = [
         .notEmpty().withMessage('La imagen del producto es obligatoria.')
 ];
 
-module.exports = { productValidation };
+module.exports = { productValidation };

@@ -2,6 +2,7 @@ const db = require('../database/models');
 const { validationResult } = require('express-validator');
 const productos = db.Product;
 const comentarios = db.Comment;
+const usuario = db.User;
 
 const productController = {
     'product': function (req, res) {
@@ -41,9 +42,9 @@ const productController = {
                 errors: errors
             });
         }
-
+    
         // Si no hay errores, procede a crear el producto.
-        productos.create({
+        const product= productos.create({
             usuario_id: req.session.user.id,
             imagen_archivo: req.body.imagen_archivo,
             nombre: req.body.nombre,
