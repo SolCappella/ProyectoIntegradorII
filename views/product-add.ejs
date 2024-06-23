@@ -20,7 +20,7 @@
 
 			<div class="form-label-div"> 
 				<label for = "imagen_archivo" class="form-label"> Imagen: </label>
-				<input type="file" id="imagen_archivo" name="imagen_archivo" accept="accept/*" placeholder="Ingresar imagen" value="<%= oldData ? oldData.imagen_archivo : '' %>" >
+				<input type="file" id="imagen_archivo" name="imagen_archivo" accept="accept/*" placeholder="Ingresar imagen" class="input-text" value="<%= oldData ? oldData.imagen_archivo : '' %>" >
 				<% if (errors && errors.imagen_archivo) { %>
 					<p class="errors-message"> <%= errors.imagen_archivo %></p>
 				<% } %>
@@ -28,15 +28,15 @@
 
 			<div class="form-label-div"> 
 				<label for = "nombre" class="form-label"> Nombre del producto: </label>
-				<input type="text" id="nombre" name="nombre"  value="<%= oldData ? oldData.nombre : '' %>">
+				<input type="text" id="nombre" name="nombre" class="input-text" value="<%= oldData ? oldData.nombre : '' %>">
 				<% if (errors && errors.nombre) { %>
 					<p class="errors-message"> <%= errors.nombre %></p>
 				<% } %>
 			</div>
 
 			<div class="form-label-div"> 
-				<label for = "descripcion"> Descripcion del producto: </label>
-				<input type="text" id="descripcion" name="descripcion"  value="<%= oldData ? oldData.descripcion : '' %>">
+				<label for = "descripcion" class="form-label" > Descripcion del producto: </label>
+				<input type="text" id="descripcion" name="descripcion" class="input-text" value="<%= oldData ? oldData.descripcion : '' %>">
 				<% if (errors && errors.descripcion) { %>
 					<p class="errors-message"> <%= errors.descripcion %></p>
 				<% } %>
@@ -48,7 +48,7 @@
 
 		</form>		
 		<% } else { %>
-            <p>Debes estar <a href="/login">logueado</a> para agregar un producto.</p> <!-- Mensaje para usuarios no logueados -->
+            <p>Debes estar <a href="/login">logueado</a> para agregar un producto.</p> 
         <% } %>	
 	</div>
 

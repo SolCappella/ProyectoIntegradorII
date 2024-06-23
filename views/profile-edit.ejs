@@ -11,50 +11,62 @@
     <%- include('./partials/header') %>
 <% } %>
 <!-- Header -->
+<div class="form-div">
+	<h2 class="products-title bebas-neue-regular">Editar mi perfil</h2>
+	<form action="/profile/<%= user.id %>/edit" method="POST" class="poppins-regular forms">
+		<div class="form-label-div">
+			<label for="email" class="form-label">Email:</label>
+			<input type="email" id="email" name="email" class="input-text" value="<%= oldData && oldData.email !== undefined ? oldData.email : user.email %>">
+			<% if (errors && errors.email) { %>
+				<p class="error-message"><%= errors.email.msg %></p>
+			<% } %>
+		</div>
 
-	<div class="form-div">
+		<div class="form-label-div">
+			<label for="username" class="form-label">Usuario:</label>
+			<input type="text" id="username" name="usuario" class="input-text" value="<%= oldData && oldData.usuario !== undefined ? oldData.usuario : user.usuario %>">
+			<% if (errors && errors.usuario) { %>
+				<p class="error-message"><%= errors.usuario.msg %></p>
+			<% } %>
+		</div>
 
-		<h2 class="products-title bebas-neue-regular">Editar mi perfil</h2>
+		<div class="form-label-div">
+			<label for="password" class="form-label">Contraseña:</label>
+			<input type="password" id="password" name="contraseña" class="input-text">
+			<% if (errors && errors.contraseña) { %>
+				<p class="error-message"><%= errors.contraseña.msg %></p>
+			<% } %>
+		</div>
 
-		<form action="/profile" method="get" class="poppins-regular forms">
+		<div class="form-label-div">
+			<label for="birthdate" class="form-label">Fecha de nacimiento:</label>
+			<input type="date" id="birthdate" name="fechaNacimiento" class="input-text" value="<%= oldData && oldData.fechaNacimiento !== undefined ? oldData.fechaNacimiento : user.fecha %>">
+			<% if (errors && errors.fechaNacimiento) { %>
+				<p class="error-message"><%= errors.fechaNacimiento.msg %></p>
+			<% } %>
+		</div>
+
+		<div class="form-label-div"> 
+			<label for="document" class="form-label">Nro de documento:</label>
+			<input type="number" id="document" name="documento" class="input-text" value="<%= oldData && oldData.documento !== undefined ? oldData.documento : user.dni %>">
+			<% if (errors && errors.dni) { %>
+				<p class="error-message"><%= errors.dni.msg %></p>
+			<% } %>
+		</div>
 		
-			<div class="form-label-div">
-				<label for="email" class="form-label">Email:</label>
-				<input type="email" id="email" name="email" required class="input-text">
-			</div>
+		<div class="form-label-div">
+			<label for="fotoPerfil" class="form-label">Foto de perfil:</label>
+			<input type="text" id="fotoPerfil" name="fotoPerfil" class="input-text" value="<%= oldData && oldData.fotoPerfil !== undefined ? oldData.fotoPerfil : user.foto %>">
+			<% if (errors && errors.fotoPerfil) { %>
+				<p class="error-message"><%= errors.fotoPerfil.msg %></p>
+			<% } %>
+		</div>
 
-			<div class="form-label-div">
-				<label for="username" class="form-label">Usuario:</label>
-				<input type="text" id="username" name="usuario" required class="input-text">
-			</div>
-
-			<div class="form-label-div">
-				<label for="password" class="form-label">Contraseña:</label>
-				<input type="password" id="password" name="contraseña" required class="input-text">
-			</div>
-
-			<div class="form-label-div">
-				<label for="birthdate" class="form-label">Fecha de nacimiento:</label>
-				<input type="date" id="birthdate" name="fechaNacimiento" required class="input-text">
-			</div>
-
-			<div class="form-label-div"> 
-				<label for="document" class="form-label">Nro de documento:</label>
-				<input type="number" id="document" name="documento" required class="input-text">
-			</div>
-
-			<div class="form-label-div">
-				<label for="profilePicture" class="form-label">Foto de perfil:</label>
-				<input type="file" id="profilePicture" name="fotoPerfil" class="input-text">
-			</div>
-
-			<div class="form-label-div">
-				<button type="submit" class="form-submit">Actualizar Perfil</button>
-			</div>
-
-		</form>
-		
-	</div>
+		<div class="form-label-div">
+			<button type="submit" class="form-submit">Actualizar Perfil</button>
+		</div>
+	</form>
+</div>
 
 <!-- /Footer -->
 <%- include('./partials/footer') %>
