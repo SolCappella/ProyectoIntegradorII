@@ -15,6 +15,7 @@
 	<div class="form-div">
 		<h2 class = "products-title bebas-neue-regular">Agregar productos</h2>
 
+		<% if (user) { %>
 		<form action="/products/add" method="post" class="forms poppins-regular">
 
 			<div class="form-label-div"> 
@@ -45,7 +46,10 @@
 				<button type="submit" class="form-submit">Agregar</button>
 			</div>
 
-		</form>			
+		</form>		
+		<% } else { %>
+            <p>Debes estar <a href="/login">logueado</a> para agregar un producto.</p> <!-- Mensaje para usuarios no logueados -->
+        <% } %>	
 	</div>
 
 <!-- /Footer -->

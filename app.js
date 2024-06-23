@@ -46,7 +46,7 @@ app.use(function(req, res, next) {
           email:user.email,
           usuario:user.usuario
         };
-        res.locals.user = user;
+        res.locals.user = req.session.user;
         next();
       })
       .catch(err => {

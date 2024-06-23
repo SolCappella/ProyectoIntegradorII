@@ -33,9 +33,12 @@ const productController = {
     },
 
     'create': function (req, res) {
-        
-        const userId = req.cookies.cookieUser;
-        console.log('Cookie userId:', userId);
+        if (!req.session.user) {
+            console.log('Error: El usuario no está logueado.');
+            return res.render('error', { message: 'Debes estar logueado para agregar un producto.' });
+        }
+
+        const userId = req.session.user.id; ;
 
 
         if (!userId) {
@@ -69,12 +72,12 @@ const productController = {
                 })
                 .catch(err => {
                     console.log(err);
-                    res.render('error', { error: 'Error al crear el producto' });
+                    res.render('error', { message: 'Error al crear el producto' });
                 });
             })
             .catch(err => {
                 console.log(err);
-                res.render('error', { error: 'Error al verificar el usuario' });
+                res.render('error', { message: 'Error al verificar el usuario' });
             });
             
         
@@ -97,7 +100,12 @@ const productController = {
                 return res.render('error', { message: 'No tienes permiso para eliminar este producto' });
             }
 
-            return productos.destroy({ where: { id: productId } });
+            return comentarios.destroy({ where: { product_id: productId } }) 
+                .then(() => {
+                    return productos.destroy({ where: { id: productId } });
+                });
+
+            
         }).then(() => {
             return res.redirect('/');
         }).catch(err => {
