@@ -52,8 +52,6 @@ const mainController = {
                         const userId = user.id;
                         console.log('Estableciendo cookie:', userId);
 
-
-
                         if (req.body.recordarme) {
                             res.cookie('cookieUser', userId, { maxAge: 1000 * 60 * 60}); 
                         }
@@ -61,15 +59,10 @@ const mainController = {
                         return res.redirect('/');
                     }
                 }
-
-                return res.render("login", { 
-                    title: 'Iniciar sesión',
-                    errors: { login: { msg: 'Email o contraseña incorrectos' } },
-                    oldData: req.body
-                });
             })
             .catch(err => {
                 console.log(err);
+                res.render('error', { error: err });
             });
     },
     'register': function (req, res) {
@@ -119,7 +112,6 @@ const mainController = {
 
     'logout': function (req, res) {
         req.session.destroy();
-
         res.clearCookie('cookieUser');
 
         return res.redirect('/')

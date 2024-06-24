@@ -3,8 +3,6 @@ var router = express.Router();
 const registerValidation = require('../middlewares/register-validator');
 const loginValidation = require('../middlewares/login-validator');
 
-/* GET home page. */
-
 const mainController = require('../controllers/mainController')
 router.get("/", mainController.index);
 router.get('/register', mainController.register);

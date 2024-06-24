@@ -36,7 +36,7 @@
                                 <article class="product-box_data">
                                     <h2 class="bebas-neue-regular"><%= producto.nombre %></h2>
                                     <p class="poppins-regular"><%= producto.descripcion %></p>
-                                    <p class="poppins-regular">Publicado por: <%= producto.user.usuario %></p>
+                                    <a href="/profile/<%= producto.user.id %>"><p class="poppins-regular">Publicado por: <%= producto.user.email %></p></a>
                                 </article>
                             </a>
                         </section>

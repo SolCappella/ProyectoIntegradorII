@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <%- include('./partials/head') %>
-    <title>Registrate</title>
+<!-- Include Head -->
+<%- include('./partials/head') %>
 </head>
 <body>
 
+<!-- Header -->    
 <% if (user) { %>
     <%- include('./partials/header-logueado') %>
 <% } else { %>
     <%- include('./partials/header') %>
 <% } %>
+<!-- Header -->
 
     <div class="form-div">
         <h2 class="products-title bebas-neue-regular">Regístrate</h2>
@@ -69,6 +71,9 @@
             </div>
         </form>
     </div>
-    <%- include('./partials/footer') %>
+<!-- /Footer -->
+<%- include('./partials/footer') %>
+<!-- /Footer -->
+
 </body>
 </html>

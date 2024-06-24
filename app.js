@@ -29,9 +29,10 @@ app.use(session(
     saveUninitialized: true }
 ));
 
+// Aclaración: Al intentar hacer if (req.session.user != undefined) como lo haciamos en clase, la página no carga y no anda el nodemon. Por eso lo hicimos así.
 app.use(function(req, res, next) {
   res.locals.user = req.session.user || undefined;
-  next();
+  return next();
 });
 
 app.use(function(req, res, next) {
@@ -41,20 +42,16 @@ app.use(function(req, res, next) {
 
     db.User.findByPk(idCookie)
       .then(user => {
-        req.session.user = {
-          id: user.id,
-          email:user.email,
-          usuario:user.usuario
-        };
-        res.locals.user = req.session.user;
-        next();
+        req.session.user = user;
+        res.locals.user = user;
+        return next();
       })
       .catch(err => {
         console.log(err);
-        next();
+        return next();
       });
   } else {
-    next();
+    return next();
   }
 });
 
@@ -69,11 +66,9 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

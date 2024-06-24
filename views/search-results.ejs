@@ -21,7 +21,7 @@
                 <% productos.forEach(producto => { %>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <section class="product-box">
-                            <a href="/product/<%= producto.id %>">
+                            <a href="/products/<%= producto.id %>">
                                 <figure class="product-box_image">
                                     <img class="product-inter" src="<%= producto.imagen_archivo %>" alt="<%= producto.nombre %>">
                                 </figure>
@@ -29,7 +29,7 @@
                                     <h2 class="bebas-neue-regular"><%= producto.nombre %></h2>
                                     <p class="poppins-regular"><%= producto.description %></p>
                                     <p class="poppins-regular">Comentarios: <%= producto.comments ? producto.comentario.length : 0 %></p>
-                                    <p class="poppins-regular">Cargado por: <%= producto.user.email %></p>
+                                    <a href="profile/<%= producto.user.id %>"><p class="poppins-regular">Cargado por: <%= producto.user.email %></p></a>
                                 </article>
                             </a>
                         </section>

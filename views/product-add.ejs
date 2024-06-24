@@ -22,7 +22,7 @@
 				<label for = "imagen_archivo" class="form-label"> Imagen: </label>
 				<input type="file" id="imagen_archivo" name="imagen_archivo" accept="accept/*" placeholder="Ingresar imagen" class="input-text" value="<%= oldData ? oldData.imagen_archivo : '' %>" >
 				<% if (errors && errors.imagen_archivo) { %>
-					<p class="errors-message"> <%= errors.imagen_archivo %></p>
+					<p class="errors-message"> <%= errors.imagen_archivo.msg %></p>
 				<% } %>
 			</div>
 
@@ -30,7 +30,7 @@
 				<label for = "nombre" class="form-label"> Nombre del producto: </label>
 				<input type="text" id="nombre" name="nombre" class="input-text" value="<%= oldData ? oldData.nombre : '' %>">
 				<% if (errors && errors.nombre) { %>
-					<p class="errors-message"> <%= errors.nombre %></p>
+					<p class="errors-message"> <%= errors.nombre.msg %></p>
 				<% } %>
 			</div>
 
@@ -38,7 +38,7 @@
 				<label for = "descripcion" class="form-label" > Descripcion del producto: </label>
 				<input type="text" id="descripcion" name="descripcion" class="input-text" value="<%= oldData ? oldData.descripcion : '' %>">
 				<% if (errors && errors.descripcion) { %>
-					<p class="errors-message"> <%= errors.descripcion %></p>
+					<p class="errors-message"> <%= errors.descripcion.msg %></p>
 				<% } %>
 			</div>
 				

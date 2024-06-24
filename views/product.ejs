@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <%- include('./partials/head') %>
+<!-- Include Head -->
+<%- include('./partials/head') %>
 </head>
 <body>
+    <!-- Header -->
     <% if (user) { %>
         <%- include('./partials/header-logueado') %>
     <% } else { %>
         <%- include('./partials/header') %>
     <% } %>
-    
+    <!-- Header -->
+
     <div class="container products-wrapper">
         <div class="d-flex align-items-center">
             <h2 class="products-title bebas-neue-regular"><%= product.nombre %></h2>
@@ -29,6 +32,7 @@
                 <article class="col-12 col-lg-8 product-detail-info poppins-regular">
                     <img class="product-detail-img" src="/<%= product.imagen_archivo %>" alt="<%= product.nombre %>">
                     <p class="product-detail-description desc"><%= product.descripcion %></p>
+                    <h3 class="©poppins-regular">Producto cargado por: <%= product.user.usuario  %></h3>
                 </article>
 
                 <div class="col-12 col-lg-4">
