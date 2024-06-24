@@ -150,16 +150,16 @@ const productController = {
         });
     },
     'edit': function (req, res) {
-        const userId = req.session.user ? req.session.user.id : null;
-        console.log('UserID:', userId);
-        let productId = req.params.id; 
+        const UserId = req.session.user ? req.session.user.id : null;
+        console.log('UserID:', UserId);
+        let ProductId = req.params.id; 
 
-        productos.findByPk(productId)
+        productos.findByPk(ProductId)
         .then(product => {
             if (!product) {
                 return res.render('error', { message: 'Producto no encontrado' });
             }
-            if (product.usuario_id !== userId) {
+            if (product.usuario_id !== UserId) {
                 return res.render('error', { message: 'No tienes permiso para editar este producto' });
             }
             res.render('product-edit', { product, errors: {}, oldData: product });
@@ -172,11 +172,11 @@ const productController = {
 
     'update': function (req, res) {
         const errors = validationResult(req);
-        const userId = req.session.user ? req.session.user.id : null;
-        const productId = req.params.id; 
+        const UserId = req.session.user ? req.session.user.id : null;
+        const ProductId = req.params.id; 
 
         if (!errors.isEmpty()) {
-            return productos.findByPk(productId)
+            return productos.findByPk(ProductId)
             .then(product => {
                 res.render('product-edit', {
                     product,
@@ -196,19 +196,24 @@ const productController = {
             updated_at: new Date()
         };
 
+        if (req.body.imagen_archivo) { 
+            const imagenArchivo = req.body.imagen_archivo;
+            updatedData.imagen_archivo = imagenArchivo
+        };
 
-        productos.findByPk(productId).then(product => {
+
+        productos.findByPk(ProductId).then(product => {
             if (!product) {
                 return res.render('error', { message: 'Producto no encontrado' });
             }
-            if (product.usuario_id !== userId) {
+            if (product.usuario_id !== UserId) {
                 return res.render('error', { message: 'No tienes permiso para editar este producto' });
             }
             console.log('Producto antes de la actualización:', product); // Agregar console.log aquí
 
             return product.update(updatedData);
         }).then(() => {
-            return res.redirect(`/products/${productId}`);
+            return res.redirect(`/products/${ProductId}`);
         }).catch(err => {
             console.log(err);
             res.render('error', { error: err });
