@@ -117,9 +117,9 @@ const productController = {
     'addComment': function (req, res) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return productos.findByPk(req.body.id, {
+            return productos.findByPk(req.body.product_id, {
                 include: [
-                    { association: "comments", include: ["user"] },
+                    { association: "comment", include: ["user"] },
                     { association: "user" }
                 ]
             })

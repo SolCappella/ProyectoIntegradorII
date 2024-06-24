@@ -32,7 +32,7 @@
                 <article class="col-12 col-lg-8 product-detail-info poppins-regular">
                     <img class="product-detail-img" src="/<%= product.imagen_archivo %>" alt="<%= product.nombre %>">
                     <p class="product-detail-description desc"><%= product.descripcion %></p>
-                    <h3 class="©poppins-regular">Producto cargado por: <%= product.user.usuario  %></h3>
+                    <h3 class="©poppins-regular">Producto cargado por: <%= product.user.email  %></h3>
                 </article>
 
                 <div class="col-12 col-lg-4">
@@ -59,7 +59,7 @@
                             <input type="hidden" name="product_id" value="<%= product.id %>">
                             <input type="text" name="texto" placeholder="..." required class="form-input">
                             <% if (errors.texto) { %>
-                                <p><%= errors.texto.msg %></p>
+                                <p class="error-message"><%= errors.texto.msg %></p> 
                             <% } %>
                             <button type="submit" class="buy-now-button poppins-regular">Agregar comentario</button>
                         </form>
