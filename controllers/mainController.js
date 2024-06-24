@@ -40,26 +40,26 @@ const mainController = {
             where: { email: req.body.email }
         })
         .then(user => {
-            if (user) {
-                const isPasswordValid = bcrypt.compareSync(req.body.password, user.contraseña);
-                    if (isPasswordValid) {
-                        req.session.user = {
-                            id: user.id,
-                            email: user.email,
-                            usuario: user.usuario
-                        };
+           
+            const isPasswordValid = bcrypt.compareSync(req.body.password, user.contraseña);
+                if (isPasswordValid) {
+                    req.session.user = {
+                        id: user.id,
+                        email: user.email,
+                        usuario: user.usuario
+                    };
 
-                        const userId = user.id;
-                        console.log('Estableciendo cookie:', userId);
+                    const userId = user.id;
+                    console.log('Estableciendo cookie:', userId);
 
-                        if (req.body.recordarme) {
+                    if (req.body.recordarme) {
                             res.cookie('cookieUser', userId, { maxAge: 1000 * 60 * 60}); 
-                        }
-
-                        return res.redirect('/');
                     }
+
+                    return res.redirect('/');
                 }
-            })
+            }
+        )
             .catch(err => {
                 console.log(err);
                 res.render('error', { error: err });

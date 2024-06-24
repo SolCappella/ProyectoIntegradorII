@@ -18,7 +18,7 @@
             <h2 class="products-title bebas-neue-regular"><%= product.nombre %></h2>
             <p class="product-detail-description poppins-regular">
                 <% if (locals.user && locals.user.id === product.usuario_id) { %>
-                    <a href="/products/edit/<%= product.id %>" class="btn btn-primary">Editar</a>
+                    <a href="/products/<%= product.id %>/edit" class="btn btn-primary">Editar</a>
                     <form action="/products/<%= product.id %>/delete" method="POST" style="display:inline;">
                         <input type="hidden" name="id" value="<%= product.id %>">
                         <button type="submit" class="btn btn-primary poppins-regular">Eliminar</button>

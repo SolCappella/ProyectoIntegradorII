@@ -38,7 +38,7 @@ const productController = {
             return res.render('error', { message: 'Debes estar logueado para agregar un producto.' });
         }
 
-        const userId = req.session.user.id; ;
+        const userId = req.session.user.id; 
 
 
         if (!userId) {
@@ -149,14 +149,75 @@ const productController = {
             res.render('error', { message: 'Error al agregar el comentario', error: err });
         });
     },
-    'edit': function(req, res) {
-        // Hacer un findByPk para encontrar el producto, si pertenece al usuario dejarlo editar y renderizar la vista
-        res.render('product-edit')
+    'edit': function (req, res) {
+        const userId = req.session.user ? req.session.user.id : null;
+        console.log('UserID:', userId);
+        let productId = req.params.id; 
+
+        productos.findByPk(productId)
+        .then(product => {
+            if (!product) {
+                return res.render('error', { message: 'Producto no encontrado' });
+            }
+            if (product.usuario_id !== userId) {
+                return res.render('error', { message: 'No tienes permiso para editar este producto' });
+            }
+            res.render('product-edit', { product, errors: {}, oldData: product });
+        })
+        .catch(err => {
+            console.log(err);
+            res.render('error', { error: err });
+        });
     },
-    'update': function(req, res) {
-        // Controller para el form POST para editar el producto. Hacer un productos.update con la info nueva que viene del form
+
+    'update': function (req, res) {
+        const errors = validationResult(req);
+        const userId = req.session.user ? req.session.user.id : null;
+        const productId = req.params.id; 
+
+        if (!errors.isEmpty()) {
+            return productos.findByPk(productId)
+            .then(product => {
+                res.render('product-edit', {
+                    product,
+                    errors: errors.mapped(),
+                    oldData: req.body
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                res.render('error', { error: err });
+            });
+        }
+
+        let updatedData = {
+            nombre: req.body.nombre,
+            descripcion: req.body.descripcion,
+            updated_at: new Date()
+        };
+
+
+        productos.findByPk(productId).then(product => {
+            if (!product) {
+                return res.render('error', { message: 'Producto no encontrado' });
+            }
+            if (product.usuario_id !== userId) {
+                return res.render('error', { message: 'No tienes permiso para editar este producto' });
+            }
+            console.log('Producto antes de la actualización:', product); // Agregar console.log aquí
+
+            return product.update(updatedData);
+        }).then(() => {
+            return res.redirect(`/products/${productId}`);
+        }).catch(err => {
+            console.log(err);
+            res.render('error', { error: err });
+        });
+
     }
 };
+
+
 
 
 module.exports = productController;
